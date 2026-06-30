@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Испанский для Коста-Бравы</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+  <div class="eyebrow">Costa Brava · Cataluña</div>
+  <h1>Español <span>&amp;</span> Català</h1>
+  <div class="sub" id="sub">Самый нужный минимум. Слева испанский, рядом каталанский (то, что на вывесках).</div>
+</header>
+
+<div class="audience">
+  <button class="aud active" data-aud="adult">🧑 Взрослым</button>
+  <button class="aud" data-aud="kids">🧒 Детям</button>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-mode="cards">📇 Карточки</button>
+  <button class="tab" data-mode="quiz">🎯 Квиз</button>
+</div>
+
+<div class="cat-bar" id="catBar"></div>
+
+<main>
+  <section id="cardsView">
+    <div class="card-stage">
+      <div class="card" id="card">
+        <div class="face front">
+          <div class="emoji" id="emoji"></div>
+          <div class="es-word" id="esWord"></div>
+          <div class="phon" id="phon"></div>
+          <div class="hint-flip">нажми, чтобы перевернуть</div>
+        </div>
+        <div class="face back">
+          <div class="ru-word" id="ruWord"></div>
+          <div class="cat-line" id="catLine"></div>
+          <button class="speak" id="speakBtn">🔊 Произнести</button>
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="arrow" id="prev">‹</button>
+      <div class="counter"><b id="cur">1</b> / <span id="total">1</span></div>
+      <button class="arrow" id="next">›</button>
+    </div>
+  </section>
+
+  <section class="quiz" id="quizView">
+    <div id="quizBody"></div>
+  </section>
+</main>
+
+<footer>
+  <span class="adult-note">Произношение дано русскими буквами приблизительно. <b>J</b>=«х», <b>ll</b>=«й», <b>ñ</b>=«нь», <b>h</b> не читается, <b>z/c</b> перед e/i = межзубное «с».</span>
+  <span class="kids-only" style="display:none">Нажимай на карточку 🔊 и повторяй вслух! Català — это язык, на котором тут говорят.</span>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
