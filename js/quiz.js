@@ -1,5 +1,7 @@
 // Квиз (multiple-choice): угадай русский перевод по испанскому слову.
-// Работает с общим объектом состояния (ctx): ctx.DATA, ctx.curCat.
+// Работает с общим объектом состояния (ctx): ctx.DATA, ctx.curCat, ctx.profile.
+
+import { addScore } from './leaderboard.js';
 
 let ctx;
 let quizBody;
@@ -62,6 +64,20 @@ function renderQuiz() {
 function renderResult() {
   const pct = Math.round(qScore / qOrder.length * 100);
   const kids = document.body.classList.contains('kids');
+
+  // записываем результат в лидерборд
+  const prof = ctx.profile || {};
+  addScore({
+    name: prof.name || 'Гость',
+    age: prof.age || null,
+    audience: kids ? 'kids' : 'adult',
+    category: ctx.curCat,
+    score: qScore,
+    total: qOrder.length,
+    pct,
+    date: Date.now(),
+  });
+
   let msg = kids
     ? (pct === 100 ? "Молодец! Ты настоящий чемпион! 🏆" : pct >= 60 ? "Здорово получается! 🌟" : "Попробуй ещё разок! 🙂")
     : (pct === 100 ? "¡Perfecto! Можно заказывать paella вслепую." : pct >= 70 ? "¡Muy bien! Почти готовы к Tossa de Mar." : "Неплохо для начала — прогоните карточки ещё раз.");

@@ -1,8 +1,11 @@
-// Точка входа: загрузка данных, переключатели аудитории/режима, категории.
+// Точка входа: онбординг, профиль, переключатели аудитории/режима, категории.
 
 import { loadData } from './data.js';
 import { initCards, renderCard } from './cards.js';
 import { initQuiz, startQuiz } from './quiz.js';
+import { getProfile, askProfile, audienceForAge } from './profile.js';
+import { initBoard, renderBoard } from './leaderboard.js';
+import { escapeHtml } from './util.js';
 
 const SUB_TEXT = {
   adult: 'Самый нужный минимум. Слева испанский, рядом каталанский (то, что на вывесках).',
@@ -15,7 +18,8 @@ const state = {
   DATA: {},                     // группы текущей аудитории
   curCat: '',                   // активная категория
   idx: 0,                       // индекс карточки
-  quizActive: false,            // открыт ли режим квиза
+  mode: 'cards',                // 'cards' | 'quiz' | 'board'
+  profile: null,                // { name, age }
 };
 
 const catBar = document.getElementById('catBar');
@@ -32,7 +36,7 @@ function buildChips() {
       [...catBar.children].forEach(x => x.classList.remove('active'));
       b.classList.add('active');
       renderCard();
-      if (state.quizActive) startQuiz();
+      if (state.mode === 'quiz') startQuiz();
     };
     catBar.appendChild(b);
   });
@@ -47,26 +51,50 @@ function setAudience(kids) {
   document.querySelector('.kids-only').style.display = kids ? 'inline' : 'none';
   buildChips();
   renderCard();
-  if (state.quizActive) startQuiz();
+  if (state.mode === 'quiz') startQuiz();
+}
+
+// Применить аудиторию и синхронизировать кнопки-переключатели.
+function applyAudience(aud) {
+  document.querySelectorAll('.aud').forEach(x => x.classList.toggle('active', x.dataset.aud === aud));
+  setAudience(aud === 'kids');
+}
+
+function renderGreeting() {
+  const g = document.getElementById('greet');
+  const p = state.profile;
+  if (p && p.name) {
+    g.innerHTML = `Привет, <b>${escapeHtml(p.name)}</b>! <button id="editProfile" class="greet-edit">сменить</button>`;
+    g.style.display = '';
+    document.getElementById('editProfile').onclick = editProfile;
+  } else {
+    g.style.display = 'none';
+  }
+}
+
+async function editProfile() {
+  const p = await askProfile(state.profile);
+  state.profile = p;
+  renderGreeting();
+  applyAudience(audienceForAge(p.age));
 }
 
 function wireControls() {
   document.querySelectorAll('.aud').forEach(a => {
-    a.onclick = () => {
-      document.querySelectorAll('.aud').forEach(x => x.classList.remove('active'));
-      a.classList.add('active');
-      setAudience(a.dataset.aud === 'kids');
-    };
+    a.onclick = () => applyAudience(a.dataset.aud);
   });
 
   document.querySelectorAll('.tab').forEach(t => {
     t.onclick = () => {
       document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
       t.classList.add('active');
-      state.quizActive = t.dataset.mode === 'quiz';
-      document.getElementById('cardsView').style.display = state.quizActive ? 'none' : 'block';
-      document.getElementById('quizView').classList.toggle('show', state.quizActive);
-      if (state.quizActive) startQuiz(); else renderCard();
+      state.mode = t.dataset.mode;
+      document.getElementById('cardsView').style.display = state.mode === 'cards' ? 'block' : 'none';
+      document.getElementById('quizView').classList.toggle('show', state.mode === 'quiz');
+      document.getElementById('boardView').classList.toggle('show', state.mode === 'board');
+      if (state.mode === 'quiz') startQuiz();
+      else if (state.mode === 'board') renderBoard();
+      else renderCard();
     };
   });
 }
@@ -75,11 +103,15 @@ async function boot() {
   state.ALL = await loadData();
   initCards(state);
   initQuiz(state);
+  initBoard();
   wireControls();
-  state.DATA = state.ALL.adult;
-  state.curCat = Object.keys(state.DATA)[0];
-  buildChips();
-  renderCard();
+
+  state.profile = getProfile();
+  if (!state.profile) {
+    state.profile = await askProfile(null);
+  }
+  renderGreeting();
+  applyAudience(audienceForAge(state.profile.age));
 }
 
 boot();

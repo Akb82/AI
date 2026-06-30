@@ -11,6 +11,7 @@
   <div class="eyebrow">Costa Brava · Cataluña</div>
   <h1>Español <span>&amp;</span> Català</h1>
   <div class="sub" id="sub">Самый нужный минимум. Слева испанский, рядом каталанский (то, что на вывесках).</div>
+  <div class="greet" id="greet" style="display:none"></div>
 </header>
 
 <div class="audience">
@@ -21,6 +22,7 @@
 <div class="tabs">
   <button class="tab active" data-mode="cards">📇 Карточки</button>
   <button class="tab" data-mode="quiz">🎯 Квиз</button>
+  <button class="tab" data-mode="board">🏆 Рекорды</button>
 </div>
 
 <div class="cat-bar" id="catBar"></div>
@@ -52,12 +54,34 @@
   <section class="quiz" id="quizView">
     <div id="quizBody"></div>
   </section>
+
+  <section class="board" id="boardView">
+    <div id="boardBody"></div>
+  </section>
 </main>
 
 <footer>
   <span class="adult-note">Произношение дано русскими буквами приблизительно. <b>J</b>=«х», <b>ll</b>=«й», <b>ñ</b>=«нь», <b>h</b> не читается, <b>z/c</b> перед e/i = межзубное «с».</span>
   <span class="kids-only" style="display:none">Нажимай на карточку 🔊 и повторяй вслух! Català — это язык, на котором тут говорят.</span>
 </footer>
+
+<div class="onboarding" id="onboarding">
+  <div class="ob-card">
+    <div class="ob-emoji">🌅</div>
+    <h2 class="ob-title">¡Hola! Давай познакомимся</h2>
+    <p class="ob-sub">Подстроим тренажёр под тебя.</p>
+    <label class="ob-field">
+      <span>Как тебя зовут?</span>
+      <input id="obName" type="text" autocomplete="given-name" placeholder="Имя" maxlength="20">
+    </label>
+    <label class="ob-field">
+      <span>Сколько тебе лет?</span>
+      <input id="obAge" type="number" inputmode="numeric" min="1" max="120" placeholder="Возраст">
+    </label>
+    <div class="ob-err" id="obErr"></div>
+    <button class="ob-go" id="obGo">Поехали →</button>
+  </div>
+</div>
 
 <script type="module" src="js/main.js"></script>
 </body>

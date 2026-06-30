@@ -45,6 +45,9 @@ header{width:100%;max-width:520px;text-align:center;padding:14px 0 6px}
 h1{font-size:25px;font-weight:800;letter-spacing:-.3px;margin-top:4px;color:var(--sea-deep)}
 h1 span{color:var(--terra)}
 .sub{font-size:13px;color:var(--ink-soft);margin-top:6px;line-height:1.45}
+.greet{font-size:13px;color:var(--sea-deep);margin-top:8px;font-weight:700}
+.greet b{color:var(--terra)}
+.greet-edit{background:none;border:0;color:var(--ink-soft);font:inherit;font-size:12px;font-weight:700;text-decoration:underline;cursor:pointer;padding:0 0 0 6px}
 
 /* переключатель аудитории */
 .audience{display:flex;gap:8px;width:100%;max-width:520px;margin:14px 0 2px}
@@ -112,6 +115,33 @@ body:not(.kids) .q-emoji{display:none}
 .result .big{font-size:46px;font-weight:800;color:var(--sea-deep)}
 .result .msg{font-size:15px;color:var(--ink-soft);margin:10px 0 22px;line-height:1.5}
 .restart{background:var(--sea);color:#fff;border:0;font:inherit;font-weight:700;font-size:15px;padding:14px 26px;border-radius:14px;cursor:pointer}
+
+/* лидерборд */
+.board{margin-top:14px;display:none}
+.board.show{display:block}
+.board-empty{text-align:center;color:var(--ink-soft);font-size:14px;padding:34px 16px;line-height:1.5}
+.board-list{display:flex;flex-direction:column;gap:8px}
+.board-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--paper-2);border-radius:14px;padding:12px 14px;box-shadow:0 6px 18px var(--shadow)}
+.board-rank{font-size:18px;font-weight:800;min-width:26px;text-align:center;color:var(--terra)}
+.board-name{font-weight:800;color:var(--sea-deep);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.board-meta{font-size:11px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:84px}
+.board-score{font-weight:800;color:var(--olive);font-variant-numeric:tabular-nums}
+
+/* онбординг */
+.onboarding{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:20px;
+  background:linear-gradient(160deg,var(--sea) 0%,var(--sea-deep) 100%)}
+.onboarding.show{display:flex}
+.ob-card{width:100%;max-width:360px;background:var(--paper);border-radius:24px;padding:26px 22px;box-shadow:0 16px 40px rgba(0,0,0,.3);text-align:center}
+.ob-emoji{font-size:46px;line-height:1}
+.ob-title{font-size:21px;font-weight:800;color:var(--sea-deep);margin-top:8px;letter-spacing:-.3px}
+.ob-sub{font-size:13px;color:var(--ink-soft);margin-top:6px}
+.ob-field{display:block;text-align:left;margin-top:16px}
+.ob-field span{display:block;font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:6px}
+.ob-field input{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:2px solid var(--paper-2);border-radius:14px;background:#fff;color:var(--ink)}
+.ob-field input:focus{outline:none;border-color:var(--sea)}
+.ob-err{color:var(--terra);font-size:13px;font-weight:700;min-height:18px;margin-top:10px}
+.ob-go{width:100%;margin-top:6px;background:var(--terra);color:#fff;border:0;font:inherit;font-weight:800;font-size:16px;padding:15px;border-radius:14px;cursor:pointer}
+.ob-go:active{transform:scale(.98)}
 
 footer{max-width:520px;font-size:11px;color:var(--ink-soft);text-align:center;margin-top:22px;line-height:1.5;opacity:.8}
 body.kids footer .adult-note{display:none}
