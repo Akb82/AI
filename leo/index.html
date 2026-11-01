@@ -83,7 +83,7 @@ th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertic
 th{color:var(--muted);font-weight:500;font-size:12px}
 td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 .diagram{overflow-x:auto;margin:6px 0 4px}
-.diagram svg{display:block;min-width:620px;width:100%;height:auto}
+.diagram svg{display:block;min-width:600px;width:100%;height:auto}
 .verdict{border-left:3px solid var(--accent);padding:2px 0 2px 12px;margin:10px 0 0}
 .src{font-size:13px;color:var(--muted)}
 .src li{word-break:break-word}
@@ -216,34 +216,42 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
   <section class="card wide">
     <h2>Как это работает</h2>
     <div class="diagram">
-      <svg viewBox="0 0 760 170" role="img" aria-label="Схема: телефон, спутник, наземный шлюз, ядро оператора, интернет">
-        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8e9bb2"/></marker></defs>
-        <rect x="300" y="8" width="160" height="52" rx="8" fill="#131c2f" stroke="#ffb547"/>
-        <text x="380" y="30" text-anchor="middle" fill="#e7edf6" font-size="13" font-family="Golos Text,sans-serif" font-weight="600">Спутник, ~520 км</text>
-        <text x="380" y="48" text-anchor="middle" fill="#8e9bb2" font-size="11" font-family="Golos Text,sans-serif">антенна 223 м², тысячи лучей</text>
-        <rect x="10" y="108" width="140" height="52" rx="8" fill="#131c2f" stroke="#1f2a42"/>
-        <text x="80" y="130" text-anchor="middle" fill="#e7edf6" font-size="13" font-family="Golos Text,sans-serif" font-weight="600">Обычный телефон</text>
-        <text x="80" y="148" text-anchor="middle" fill="#8e9bb2" font-size="11" font-family="Golos Text,sans-serif">LTE, ~0,2 Вт</text>
-        <rect x="235" y="108" width="140" height="52" rx="8" fill="#131c2f" stroke="#56d6c9"/>
-        <text x="305" y="130" text-anchor="middle" fill="#e7edf6" font-size="13" font-family="Golos Text,sans-serif" font-weight="600">Шлюз в стране</text>
-        <text x="305" y="148" text-anchor="middle" fill="#8e9bb2" font-size="11" font-family="Golos Text,sans-serif">тарелки + базовая станция</text>
-        <rect x="425" y="108" width="150" height="52" rx="8" fill="#131c2f" stroke="#1f2a42"/>
-        <text x="500" y="130" text-anchor="middle" fill="#e7edf6" font-size="13" font-family="Golos Text,sans-serif" font-weight="600">Ядро оператора</text>
-        <text x="500" y="148" text-anchor="middle" fill="#8e9bb2" font-size="11" font-family="Golos Text,sans-serif">номер, биллинг, СОРМ</text>
-        <rect x="625" y="108" width="125" height="52" rx="8" fill="#131c2f" stroke="#1f2a42"/>
-        <text x="687" y="138" text-anchor="middle" fill="#e7edf6" font-size="13" font-family="Golos Text,sans-serif" font-weight="600">Интернет, звонки</text>
-        <line x1="110" y1="106" x2="318" y2="62" stroke="#ffb547" stroke-width="2" marker-end="url(#ar)"/>
-        <text x="150" y="74" fill="#ffb547" font-size="11" font-family="JetBrains Mono,monospace">частоты оператора 700–2100 МГц</text>
-        <line x1="372" y1="62" x2="318" y2="106" stroke="#56d6c9" stroke-width="2" marker-end="url(#ar)"/>
-        <text x="352" y="92" fill="#56d6c9" font-size="11" font-family="JetBrains Mono,monospace">фидер</text>
-        <line x1="377" y1="134" x2="421" y2="134" stroke="#8e9bb2" stroke-width="1.5" marker-end="url(#ar)"/>
-        <line x1="577" y1="134" x2="621" y2="134" stroke="#8e9bb2" stroke-width="1.5" marker-end="url(#ar)"/>
+      <svg viewBox="0 0 760 430" role="img" aria-label="Две схемы: у AST базовая станция на земле в стране, у Starlink — на спутнике, трафик идёт по лазерам на шлюз SpaceX">
+        <defs><marker id="ar_f5a145" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#f5a145"/></marker><marker id="ar_56d6c9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#56d6c9"/></marker><marker id="ar_8e9bb2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8e9bb2"/></marker><marker id="ar_ffffff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ffffff"/></marker></defs>
+        <text x="10" y="20" fill="#f5a145" font-size="15" font-family="Golos Text,sans-serif" font-weight="700">AST: базовая станция на земле, в стране</text>
+        <rect x="275" y="36" width="210" height="54" rx="9" fill="#131c2f" stroke="#f5a145" stroke-width="1.5"/><text x="380.0" y="57" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Спутник AST, ~520 км</text><text x="380.0" y="75" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">антенна-ретранслятор 223 м²</text>
+        <rect x="10" y="140" width="165" height="54" rx="9" fill="#131c2f" stroke="#2a3858" stroke-width="1.5"/><text x="92.5" y="161" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Обычный телефон</text><text x="92.5" y="179" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">LTE, ~0,2 Вт</text>
+        <rect x="275" y="140" width="210" height="54" rx="9" fill="#131c2f" stroke="#56d6c9" stroke-width="1.5"/><text x="380.0" y="161" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Шлюз в Казахстане</text><text x="380.0" y="179" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">базовая станция + антенны</text>
+        <rect x="510" y="140" width="140" height="54" rx="9" fill="#131c2f" stroke="#2a3858" stroke-width="1.5"/><text x="580.0" y="161" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Ядро оператора</text><text x="580.0" y="179" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">номер, СОРМ</text>
+        <rect x="668" y="140" width="86" height="54" rx="9" fill="#131c2f" stroke="#2a3858" stroke-width="1.5"/><text x="711.0" y="161" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Интернет</text><text x="711.0" y="179" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">звонки</text>
+        <line x1="150" y1="140" x2="272" y2="80" stroke="#f5a145" stroke-width="2" marker-end="url(#ar_f5a145)"/>
+        <text x="266" y="52" text-anchor="end" fill="#f5a145" font-size="12" font-family="JetBrains Mono,monospace">частоты оператора</text>
+        <text x="266" y="67" text-anchor="end" fill="#f5a145" font-size="12" font-family="JetBrains Mono,monospace">700–850 МГц</text>
+        <line x1="380" y1="92" x2="380" y2="137" stroke="#56d6c9" stroke-width="2" marker-end="url(#ar_56d6c9)"/>
+        <text x="390" y="120" text-anchor="start" fill="#56d6c9" font-size="12" font-family="JetBrains Mono,monospace">фидер</text>
+        <line x1="487" y1="167" x2="507" y2="167" stroke="#8e9bb2" stroke-width="2" marker-end="url(#ar_8e9bb2)"/>
+        <line x1="652" y1="167" x2="665" y2="167" stroke="#8e9bb2" stroke-width="2" marker-end="url(#ar_8e9bb2)"/>
+        <line x1="10" y1="215" x2="750" y2="215" stroke="#1f2a42"/>
+        <text x="10" y="245" fill="#ffffff" font-size="15" font-family="Golos Text,sans-serif" font-weight="700">Starlink у Beeline: базовая станция на спутнике</text>
+        <rect x="275" y="261" width="210" height="54" rx="9" fill="#131c2f" stroke="#cfd8e6" stroke-width="1.5"/><text x="380.0" y="282" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Спутник Starlink, ~360 км</text><text x="380.0" y="300" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">базовая станция на борту</text>
+        <rect x="540" y="261" width="210" height="54" rx="9" fill="#131c2f" stroke="#2a3858" stroke-width="1.5"/><text x="645.0" y="282" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Другие спутники</text><text x="645.0" y="300" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">связь лазером между ними</text>
+        <rect x="10" y="365" width="165" height="54" rx="9" fill="#131c2f" stroke="#2a3858" stroke-width="1.5"/><text x="92.5" y="386" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Обычный телефон</text><text x="92.5" y="404" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">LTE, ~0,2 Вт</text>
+        <rect x="540" y="365" width="210" height="54" rx="9" fill="#131c2f" stroke="#cfd8e6" stroke-width="1.5"/><text x="645.0" y="386" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Шлюз SpaceX</text><text x="645.0" y="404" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">может быть за рубежом</text>
+        <rect x="275" y="365" width="210" height="54" rx="9" fill="#131c2f" stroke="#2a3858" stroke-width="1.5"/><text x="380.0" y="386" text-anchor="middle" fill="#e7edf6" font-size="14" font-family="Golos Text,sans-serif" font-weight="600">Ядро Beeline</text><text x="380.0" y="404" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="Golos Text,sans-serif">номер, СОРМ</text>
+        <line x1="150" y1="365" x2="272" y2="305" stroke="#ffffff" stroke-width="2" marker-end="url(#ar_ffffff)"/>
+        <text x="266" y="277" text-anchor="end" fill="#ffffff" font-size="12" font-family="JetBrains Mono,monospace">частоты оператора</text>
+        <text x="266" y="292" text-anchor="end" fill="#ffffff" font-size="12" font-family="JetBrains Mono,monospace">~1900 МГц</text>
+        <line x1="487" y1="288" x2="537" y2="288" stroke="#8e9bb2" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ar_8e9bb2)"/>
+        <text x="512" y="280" text-anchor="middle" fill="#8e9bb2" font-size="12" font-family="JetBrains Mono,monospace">лазер</text>
+        <line x1="645" y1="317" x2="645" y2="362" stroke="#56d6c9" stroke-width="2" marker-end="url(#ar_56d6c9)"/>
+        <text x="655" y="345" text-anchor="start" fill="#56d6c9" font-size="12" font-family="JetBrains Mono,monospace">фидер</text>
+        <line x1="538" y1="392" x2="488" y2="392" stroke="#8e9bb2" stroke-width="2" marker-end="url(#ar_8e9bb2)"/>
       </svg>
     </div>
     <ol class="steps">
       <li><b>Телефон ничего не знает про спутник.</b> Он видит обычную сеть LTE оператора-партнёра. Никакой тарелки и особого чипа не нужно.</li>
       <li><b>Спутник ловит очень слабый сигнал.</b> У телефона маленькая антенна и мощность около 0,2 Вт, а до спутника 500–1 000 км. Поэтому у AST антенна размером с теннисный корт: 223 м² у новых BlueBird.</li>
-      <li><b>Сигнал спускается на наземный шлюз в стране.</b> Дальше трафик идёт в ядро оператора: номер, биллинг, законный перехват (СОРМ). Поэтому услуга продаётся только через местного оператора.</li>
+      <li><b>Дальше трафик идёт в ядро местного оператора:</b> номер, биллинг, законный перехват (СОРМ). Поэтому и AST, и Starlink продают услугу только через оператора. Разница в том, где стоит базовая станция. У AST — на земле, в шлюзе в стране: трафик сразу заходит к оператору. У Starlink — на спутнике: трафик идёт по лазерам между спутниками на шлюз SpaceX, который может быть за рубежом, и только потом к Beeline.</li>
       <li><b>Спутник всё время улетает.</b> Он проходит над страной за несколько минут, и телефон переключается на следующий. Чтобы связь не рвалась, над каждой точкой в любой момент должен висеть хотя бы один спутник.</li>
     </ol>
     <p class="verdict">AST и Starlink делают разную ставку. Starlink берёт числом: 637 спутников для телефонов в каталоге на 01.11.2026, сейчас это SMS и лёгкие данные. AST ставит мало, но огромных аппаратов, чтобы дать полноценный мобильный интернет: на орбите 13, план — 45–60 для непрерывной связи в США, Европе и Японии и около 90 для всего мира.</p>
