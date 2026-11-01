@@ -320,6 +320,20 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
     <h3>Почему спутников нужно так много</h3>
     <p>Спутник на 520 км делает виток за ~95 минут и проходит над всеми странами между 53° с.ш. и 53° ю.ш. Казахстан он видит около 5,5% времени, а прямо над страной пролетает ещё реже — около 2%. Остальное время он работает над чужой территорией.</p>
     <p>Поэтому группировка «только для Казахстана» физически получается глобальной сетью: по нашей модели нужно 70–80 аппаратов, столько же AST строит для США и Европы. Широта у нас та же.</p>
+    <h3>Слои орбит</h3>
+    <p>Большие группировки летают несколькими «слоями»: на разной высоте и с разным наклоном орбиты. Наклон задаёт, до какой широты доходит спутник. Казахстан лежит на 40–55° с.ш., поэтому ему больше всего дают слои с наклоном 50–55°: на этих широтах спутники такого слоя гуще всего.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Группировка</th><th>Слои: высота, наклон</th></tr></thead>
+      <tbody>
+        <tr><td>AST</td><td>~500–540 км, 53° — один слой</td></tr>
+        <tr><td>Starlink для телефонов</td><td>~350 км: 53° и 43° — два слоя (по каталогу)</td></tr>
+        <tr><td>Starlink для тарелок (на глобусе не показан)</td><td>11 000+ спутников, 340–560 км: 53°, 43°, 70°, 97°</td></tr>
+        <tr><td>Eutelsat OneWeb</td><td>~1 200 км, 88° — полярный</td></tr>
+        <tr><td>Amazon Leo</td><td>план из трёх слоёв: 630 км / 52° (1 156), 610 км / 42° (1 296), 590 км / 33° (784). Сейчас заполняется первый</td></tr>
+        <tr><td>Qianfan</td><td>~1 066 км, 89° — полярный. Другие слои в открытых данных не раскрыты</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Полярные слои (OneWeb, Qianfan) сгущаются у полюсов, поэтому над севером спутников заметно больше, чем над Казахстаном. Слой Amazon Leo с наклоном 33° поднимается только до 33° с.ш. и до юга Казахстана едва дотягивается.</p>
   </section>
 
   <section class="card">
@@ -550,12 +564,13 @@ const countLaunched=k=>real[k].launch.filter(t=>t<=stageMs()).length;
 const PLAN_MAX=78;let planList=[];
 function genPlan(P,S){const l=[];const n=P*S;for(let p=0;p<P;p++)for(let q=0;q<S;q++)l.push({raan:2*Math.PI*p/P+0.13,m0:2*Math.PI*q/S+2*Math.PI*p/n});return l;}
 function setPlan(){const [P,S]=stageObj().plan;planList=P?genPlan(P,S):[];}
-const SHELL={kuiper:{alt:610,inc:42},qianfan:{alt:1060,inc:89}};
+const SHELL={kuiper:[{alt:630,inc:51.9,cap:1156},{alt:610,inc:42,cap:1296},{alt:590,inc:33,cap:784}],qianfan:[{alt:1066,inc:89,cap:99999}]};
 const SYNTH_MAX={kuiper:3236,qianfan:13648};
 const FUT={'2027':{kuiper:1100,qianfan:648},'2028':{kuiper:1618,qianfan:4648},'2029':{kuiper:3236,qianfan:8648},'2030':{kuiper:3236,qianfan:13648}};
 const synth={kuiper:[],qianfan:[]};
-function shellList(k,n){const sh=SHELL[k],a=R+sh.alt,nm=Math.sqrt(MU/(a*a*a)),inc=sh.inc*D2R;const P=Math.max(1,Math.round(Math.sqrt(n/1.5)));const l=[];
-  for(let i=0;i<n;i++){const p=i%P,q=Math.floor(i/P),S=Math.ceil(n/P),ph=(p*0.6180339887)%1;l.push({raan:2*Math.PI*p/P+0.21,m0:2*Math.PI*(q+ph)/S,nm,inc});}return l;}
+function shellOne(sh,n,l){if(n<=0)return;const a=R+sh.alt,nm=Math.sqrt(MU/(a*a*a)),inc=sh.inc*D2R;const P=Math.max(1,Math.round(Math.sqrt(n/1.5)));
+  for(let i=0;i<n;i++){const p=i%P,q=Math.floor(i/P),S=Math.ceil(n/P),ph=(p*0.6180339887)%1;l.push({raan:2*Math.PI*p/P+0.21+sh.inc*0.01,m0:2*Math.PI*(q+ph)/S,nm,inc,rad:a});}}
+function shellList(k,n){const l=[];let left=n,used=countLaunched(k);for(const sh of SHELL[k]){const room=Math.max(0,sh.cap-used);used=Math.max(0,used-sh.cap);const take=Math.min(left,room);shellOne(sh,take,l);left-=take;if(left<=0)break;}return l;}
 function shellECEF(sp,t){const u=sp.m0+sp.nm*t,cO=Math.cos(sp.raan),sO=Math.sin(sp.raan),cu=Math.cos(u),su=Math.sin(u),ci=Math.cos(sp.inc),si=Math.sin(sp.inc);
   const x=cO*cu-sO*su*ci,y=sO*cu+cO*su*ci,z=su*si,th=WE*t,ct=Math.cos(th),st=Math.sin(th);return [x*ct+y*st,-x*st+y*ct,z];}
 function setSynth(){for(const k of ['kuiper','qianfan']){const tgt=(FUT[state.stage]||{})[k]||0;const ex=Math.max(0,tgt-countLaunched(k));synth[k]=ex?shellList(k,ex):[];}}
@@ -637,7 +652,7 @@ function dailyReal(){const job=++dayJob;const start=simDate().getTime();
     const ex=extra&&extra.length>1500?extra.filter((_,j)=>j%Math.ceil(extra.length/1500)===0):extra;
     function chunk(){if(job!==dayJob)return;const until=Math.min(total,i+12);for(;i<until;i++){const d=new Date(start+i*stepMin*60000),gm=satellite.gstime(d);const mark=new Uint8Array(kzPts.length);
         for(const rec of recs){const p=propEcf(rec,d,gm);if(!p)continue;coverMark(p.u,Math.cos(lambdaAt(p.rad,state.elev)),mark);}
-        if(ex){const cl=Math.cos(lambdaAt(exAlt,state.elev)),ts=(d.getTime()-t0)/1000;for(const sp of ex)coverMark(exFn(sp,ts),cl,mark);}
+        if(ex){const cl0=exAlt?Math.cos(lambdaAt(exAlt,state.elev)):0,ts=(d.getTime()-t0)/1000;for(const sp of ex)coverMark(exFn(sp,ts),sp.rad?Math.cos(lambdaAt(sp.rad,state.elev)):cl0,mark);}
         for(let k=0;k<mark.length;k++)hits[k]+=mark[k];steps++;}
       if(i<total)setTimeout(chunk,0);else{let s=0;for(const h of hits)s+=h/steps;put(out,(s/hits.length*100).toFixed(0)+' %');}}
     chunk();}
@@ -645,7 +660,7 @@ function dailyReal(){const job=++dayJob;const start=simDate().getTime();
   if(GROUPS.ast.on)run(f('ast'),2,'d_ast',planList.length?planList:null,A_MODEL,modelECEF);
   if(GROUPS.dtc.on)run(f('dtc'),5,'d_dtc');
   if(GROUPS.oneweb.on)run(f('oneweb'),10,'d_oneweb');
-  for(const k of ['kuiper','qianfan'])if(GROUPS[k].on)run(f(k),10,'d_'+k,synth[k],R+SHELL[k].alt,shellECEF);
+  for(const k of ['kuiper','qianfan'])if(GROUPS[k].on)run(f(k),10,'d_'+k,synth[k],null,shellECEF);
   if(GROUPS.kazsat.on)put('d_kazsat','100 %');}
 let nextJob=0,lastNext=0;
 function nextPass(){const now=simDate().getTime();for(let s=0;s<=86400;s+=30){const d=new Date(now+s*1000),gm=satellite.gstime(d);
@@ -695,7 +710,7 @@ function updateReal(nowMs){
       const nr=real[k].recs.length,sl=synth[k]||[],tot=nr+sl.length,stride=Math.max(1,Math.ceil(tot/1500));let s=0,idx=0;
       const shade=(i,u,rad)=>{let br=0.5;if(idx++%stride===0&&coverMark(u,Math.cos(lambdaAt(rad,state.elev)))){br=1;s+=stride;}col[i*3]=base.r*br;col[i*3+1]=base.g*br;col[i*3+2]=base.b*br;};
       real[k].recs.forEach((rec,i)=>{const p=launched(k,i)?propEcf(rec,d,gm):null;if(!p){pos[i*3]=pos[i*3+1]=pos[i*3+2]=0;return;}const r=p.rad/R;pos[i*3]=p.u[0]*r;pos[i*3+1]=p.u[2]*r;pos[i*3+2]=-p.u[1]*r;shade(i,p.u,p.rad);});
-      if(SYNTH_MAX[k]){const ts=(d.getTime()-t0)/1000,rad=R+SHELL[k].alt,r=rad/R;for(let j=0;j<SYNTH_MAX[k];j++){const i=nr+j;if(j>=sl.length){pos[i*3]=pos[i*3+1]=pos[i*3+2]=0;continue;}const u=shellECEF(sl[j],ts);pos[i*3]=u[0]*r;pos[i*3+1]=u[2]*r;pos[i*3+2]=-u[1]*r;shade(i,u,rad);}}
+      if(SYNTH_MAX[k]){const ts=(d.getTime()-t0)/1000;for(let j=0;j<SYNTH_MAX[k];j++){const i=nr+j;if(j>=sl.length){pos[i*3]=pos[i*3+1]=pos[i*3+2]=0;continue;}const u=shellECEF(sl[j],ts),rad=sl[j].rad,r=rad/R;pos[i*3]=u[0]*r;pos[i*3+1]=u[2]*r;pos[i*3+2]=-u[1]*r;shade(i,u,rad);}}
       L.pts.geometry.attributes.position.needsUpdate=true;L.pts.geometry.attributes.color.needsUpdate=true;
       put('n_'+k,(stride>1?'~':'')+s);}
     // KazSat
@@ -756,10 +771,10 @@ function renderLegend(){const box=$('legend3d');box.innerHTML='';
     sw.innerHTML=shapeSVG(shape,css);
     const t=document.createElement('span');t.textContent=txt;d.append(sw);if(lk&&LOGOS[lk]){const im=document.createElement('img');im.src=LOGOS[lk];im.alt=GROUPS[lk].name;im.className='lg'+(lk==='oneweb'?' light':'');d.append(im);}d.append(t);box.appendChild(d);};
   if(state.mode==='real'){
-    if(GROUPS.ast.on)row('#f5a145','sq','крупные квадраты (огромные антенны), '+(countLaunched('ast')+planList.length)+' шт.'+(planList.length?' по плану':''),'ast');
-    if(GROUPS.dtc.on)row('#ffffff','dot','для телефонов — белые кружки, '+countLaunched('dtc'),'dtc');
+    if(GROUPS.ast.on)row('#f5a145','sq','крупные квадраты · ~500–540 км, 53°, '+(countLaunched('ast')+planList.length)+' шт.'+(planList.length?' по плану':''),'ast');
+    if(GROUPS.dtc.on)row('#ffffff','dot','для телефонов — белые кружки · слои ~350 км: 53° и 43°, '+countLaunched('dtc'),'dtc');
     if(GROUPS.kazsat.on)row('#00afca','cube','KazSat — голубые кубы на дальнем кольце');
-    const nm={oneweb:'треугольники',kuiper:'Amazon Leo — ромбы',qianfan:'Qianfan (Китай) — крестики'};for(const k of ['oneweb','kuiper','qianfan'])if(GROUPS[k].on)row(GROUPS[k].css,SHAPE[k],nm[k]+', '+totalCount(k).toLocaleString('ru-RU'),k);
+    const nm={oneweb:'треугольники · 1 200 км, 88°',kuiper:'Amazon Leo — ромбы · слои 630 км/52°, 610/42°, 590/33°',qianfan:'Qianfan (Китай) — крестики · 1 066 км, 89°'};for(const k of ['oneweb','kuiper','qianfan'])if(GROUPS[k].on)row(GROUPS[k].css,SHAPE[k],nm[k]+', '+totalCount(k).toLocaleString('ru-RU'),k);
     if(planList.length){const f=document.createElement('div');f.className='note2';f.textContent='Год '+state.stage+': считаем, что планы сбылись — AST, Amazon Leo (3 236 к 2029), Qianfan (график до ~13 600 к 2030). Starlink для телефонов и OneWeb — сегодняшний состав: новых чисел нет. Будущие спутники расставлены условно.';box.appendChild(f);}
     const n=document.createElement('div');n.className='note2';n.textContent='Ярче — видят Казахстан. Нажмите на спутник, чтобы узнать имя.';box.appendChild(n);
   }else{row('#f5a145','sq','видит Казахстан');row('#c9d4e6','sq','над другими странами');row('#5b84ff','line','плоскости орбит');}
