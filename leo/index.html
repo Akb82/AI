@@ -527,7 +527,7 @@ const STAGES=[
  {id:'2024',label:'2024',until:'2024-12-31',plan:[0,0],note:'2024: AST +5 BlueBird первого поколения (12.09). Starlink выводит первые спутники для телефонов с января.'},
  {id:'2025',label:'2025',until:'2025-12-31',plan:[0,0],note:'2025: AST +BlueBird 6, первый большой, 223 м² (24.12). Starlink для телефонов: все 637 выведены к июню.'},
  {id:'2026',label:'2026 · сейчас',until:'2026-11-01',plan:[0,0],note:'2026: BlueBird 7 потерян 19.04, +BlueBird 8–10 (17.06), +11–13 (05.08). AST — 13 аппаратов на 01.11.2026. Beeline запустил Starlink в Казахстане.'},
- {id:'2027',label:'2027 · план',until:'2026-11-01',plan:[8,4],note:'2027, план: AST ~45 спутников — непрерывная связь в приоритетных странах, старт коммерции. Будущие спутники — пустые рамки, расстановка условная.'},
+ {id:'2027',label:'2027 · план',until:'2026-11-01',plan:[8,4],note:'2027, план: AST ~45 спутников — непрерывная связь в приоритетных странах, старт коммерции. Будущие спутники расставлены условно и равномерно.'},
  {id:'2028',label:'2028',until:'2026-11-01',plan:[12,4],note:'2028, оценка: ~60 спутников AST — верх диапазона 45–60, который компания называет для непрерывной связи. Срок — наша оценка.'},
  {id:'2029',label:'2029',until:'2026-11-01',plan:[13,6],note:'2029, оценка: ~90 спутников AST — цель компании для всего мира. Срок — наша оценка, компания его не называет.'},
  {id:'2030',label:'2030',until:'2026-11-01',plan:[13,6],note:'2030, оценка: ~90 AST. Starlink для телефонов показан на сегодня, 637: новое поколение на своём спектре 2 ГГц ожидается, но числа SpaceX не раскрыла.'}];
@@ -648,7 +648,7 @@ function updateReal(nowMs){
     const cl=Math.cos(lam),r=A_MODEL/R,ts=(d.getTime()-t0)/1000;
     planObjs.forEach((o,i)=>{const vis=i<planList.length;o.m.visible=vis;if(!vis){o.cap.visible=o.edge.visible=false;}});
     planList.forEach((sp,i)=>{const o=planObjs[i];const u=modelECEF(sp,ts);o.m.position.copy(toScene(u,r));o.m.lookAt(0,0,0);o.cap.quaternion.setFromUnitVectors(yUp,toScene(u,1).normalize());o.edge.quaternion.copy(o.cap.quaternion);
-      o.cap.visible=o.edge.visible=state.fp;const on=coverMark(u,cl,mark);if(on)seen++;o.cap.material=on?matFpOn:matFpOff;o.edge.material=on?matEdgeOn:matEdgeOff;
+      o.cap.visible=o.edge.visible=state.fp;const on=coverMark(u,cl,mark);o.m.material=on?matAstOn:matAstOff;if(on)seen++;o.cap.material=on?matFpOn:matFpOff;o.edge.material=on?matEdgeOn:matEdgeOff;
       const dp=u[0]*phoneU[0]+u[1]*phoneU[1]+u[2]*phoneU[2],dg=u[0]*gwU[0]+u[1]*gwU[1]+u[2]*gwU[2];if(dp>cl&&dg>cl&&dp>bestDot){bestDot=dp;best={u,r};}});}
   let c=0;for(const v of mark)c+=v;
   put('rAst',seen+' из '+(countLaunched('ast')+(planOn()?planList.length:0)));put('rAstCov',Math.round(c/kzPts.length*100)+' %');
@@ -724,11 +724,11 @@ function renderLegend(){const box=$('legend3d');box.innerHTML='';
     sw.innerHTML=shapeSVG(shape,css);
     const t=document.createElement('span');t.textContent=txt;d.append(sw);if(lk&&LOGOS[lk]){const im=document.createElement('img');im.src=LOGOS[lk];im.alt=GROUPS[lk].name;im.className='lg'+(lk==='oneweb'?' light':'');d.append(im);}d.append(t);box.appendChild(d);};
   if(state.mode==='real'){
-    if(GROUPS.ast.on)row('#f5a145','sq','крупные квадраты (огромные антенны), '+countLaunched('ast')+' шт.','ast');
-    if(planOn())row('#f5a145','frame','план AST — пустые рамки, +'+planList.length);
+    if(GROUPS.ast.on)row('#f5a145','sq','крупные квадраты (огромные антенны), '+(countLaunched('ast')+planList.length)+' шт.'+(planList.length?' по плану':''),'ast');
     if(GROUPS.dtc.on)row('#ffffff','dot','для телефонов — белые кружки, '+countLaunched('dtc'),'dtc');
     if(GROUPS.kazsat.on)row('#00afca','cube','KazSat — голубые кубы на дальнем кольце');
     const nm={oneweb:'треугольники',kuiper:'Amazon Leo — ромбы',qianfan:'Qianfan (Китай) — крестики'};for(const k of ['oneweb','kuiper','qianfan'])if(GROUPS[k].on)row(GROUPS[k].css,SHAPE[k],nm[k]+', '+countLaunched(k),k);
+    if(planList.length){const f=document.createElement('div');f.className='note2';f.textContent='Год '+state.stage+': считаем, что план AST сбылся. Остальные группировки — в сегодняшнем составе: планы Starlink для телефонов не раскрыты, Amazon Leo, OneWeb и Qianfan — интернет для тарелок, не для телефонов.';box.appendChild(f);}
     const n=document.createElement('div');n.className='note2';n.textContent='Ярче — видят Казахстан. Нажмите на спутник, чтобы узнать имя.';box.appendChild(n);
   }else{row('#f5a145','sq','видит Казахстан');row('#c9d4e6','sq','над другими странами');row('#5b84ff','line','плоскости орбит');}
   if(state.link)row('#9dff8a','line','канал на шлюз в Алматы');}
