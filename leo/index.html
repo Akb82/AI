@@ -126,8 +126,8 @@ footer{font-size:12px;color:var(--muted)}
   <p style="margin:0"><b>Что смотреть, по порядку:</b></p>
   <ol>
     <li>Глобус «Сейчас на орбите»: жёлтые — 13 спутников AST, голубые точки — 637 Starlink для телефонов. Время идёт ускоренно, видно, как они пролетают над Казахстаном. Легенда в углу глобуса подсказывает, что есть что; нажмите на спутник — появится его имя.</li>
-    <li>Цифры под глобусом: AST закрывает Казахстан около четверти суток, Starlink — почти круглые сутки.</li>
-    <li>«Этап вывода»: переключайте 2022 → 2024 → 2025 → 2026 → план ~45 и смотрите, как растёт группировка и покрытие.</li>
+    <li>Цифры под глобусом: AST сейчас закрывает Казахстан примерно пятую часть суток, Starlink — круглые сутки.</li>
+    <li>«Этап вывода»: переключайте годы 2022 → 2030 и смотрите, как растёт группировка и покрытие. 2027–2030 — план AST и наша оценка сроков.</li>
     <li>Режим «Сколько нужно»: переключите 13 → 60 → 96 спутников и посмотрите, как растёт покрытие.</li>
     <li>Приблизьте глобус к Казахстану — подгрузятся спутниковые снимки страны (на компьютере колесом, на iPhone двумя пальцами в режиме «Крутить глобус»).</li>
     <li>Кнопка «Показать KazSat»: глобус сам отдалится и покажет, насколько далеко геостационар. Вторым нажатием — обратно к Казахстану.</li>
@@ -178,15 +178,6 @@ footer{font-size:12px;color:var(--muted)}
       <div class="note">Идеальная равномерная расстановка: 520 км, наклон 53°, как у AST.</div>
     </div>
     <div class="group">
-      <div class="lbl">Как низко над горизонтом телефон ещё ловит спутник</div>
-      <div class="seg" id="segE">
-        <button type="button" data-e="10">10°</button>
-        <button type="button" data-e="20">20°</button>
-        <button type="button" data-e="30">30°</button>
-      </div>
-      <div class="note">Это допущение расчёта, а не свойство спутника. 10° — оптимистично, для открытой степи: зона шире, спутников нужно меньше. 30° — осторожно, для города: сигнал надёжнее, но спутников нужно больше.</div>
-    </div>
-    <div class="group">
       <div class="lbl">Слои</div>
       <div class="checks">
         <label><input type="checkbox" id="chkOrb" checked> Орбиты</label>
@@ -203,6 +194,7 @@ footer{font-size:12px;color:var(--muted)}
       <div class="note" id="spdTxt"></div>
     </div>
     <div class="stats" id="stats"></div>
+    <div class="note">Связь считаем, если спутник выше 15° над горизонтом — почему, сказано в «Оговорках» ниже.</div>
   </aside>
 </div>
 
@@ -252,7 +244,7 @@ footer{font-size:12px;color:var(--muted)}
         <tr><td>Подход</td><td>Мало, но огромных спутников: антенна 223 м²</td><td>Много небольших спутников</td></tr>
         <tr><td>На орбите, 01.11.2026</td><td class="n">13</td><td class="n">637</td></tr>
         <tr><td>План</td><td>~45 к 2027 для непрерывной связи в приоритетных странах, ~90 для мира</td><td>Новое поколение на собственном спектре 2 ГГц</td></tr>
-        <tr><td>Над Казахстаном сейчас (угол 10°)</td><td class="n">~27% суток</td><td class="n">~100% суток</td></tr>
+        <tr><td>Над Казахстаном сейчас</td><td class="n">~21% суток</td><td class="n">~100% суток</td></tr>
         <tr><td>Скорость</td><td>Пик 98,9 Мбит/с в тесте на открытом море. Обещают 120–200 Мбит/с на соту</td><td>Beeline: до 2 Мбит/с. Замеры в США: 1,7–4 Мбит/с</td></tr>
         <tr><td>Что работает сейчас</td><td>Коммерции нет, бета готовится</td><td>SMS, мессенджеры, карты, лёгкие данные</td></tr>
         <tr><td>В зданиях</td><td>Обещают у окна и за лёгкими стенами, замеров нет</td><td>Нужен открытый обзор неба</td></tr>
@@ -306,14 +298,14 @@ footer{font-size:12px;color:var(--muted)}
     <div class="tbl"><table>
       <thead><tr><th>Что</th><th>Размер</th><th>Что это значит</th></tr></thead>
       <tbody>
-        <tr><td>Зона видимости спутника на 520 км при угле 10° / 20° / 30°</td><td class="n">≈1 600 / 1 080 / 760 км</td><td>Круг на земле, откуда спутник вообще виден. При 10° это почти весь Казахстан.</td></tr>
+        <tr><td>Зона видимости одного спутника на 520 км</td><td class="n">≈1 300 км радиус</td><td>Круг на земле, откуда спутник виден выше 15° над горизонтом. Это почти пол-Казахстана.</td></tr>
         <tr><td>Один луч при антенне 15 м, 800 / 1800 / 2300 МГц</td><td class="n">≈13 / 5,8 / 4,5 км</td><td>Спутник режет зону на лучи. Ёмкость луча делят все телефоны внутри него.</td></tr>
         <tr><td>Обычная вышка в городе</td><td class="n">0,3–2 км</td><td>Спутник не заменит город, он закрывает дыры между вышками.</td></tr>
       </tbody>
     </table></div>
     <h3>Почему спутников нужно так много</h3>
-    <p>Спутник на 520 км делает виток за ~95 минут и проходит над всеми странами между 53° с.ш. и 53° ю.ш. Казахстан он видит около 6% времени, а прямо над страной пролетает ещё реже — около 2%. Остальное время он работает над чужой территорией.</p>
-    <p>Поэтому группировка «только для Казахстана» физически получается глобальной сетью: те же 50–70 аппаратов, что AST строит для США и Европы. Широта у нас та же.</p>
+    <p>Спутник на 520 км делает виток за ~95 минут и проходит над всеми странами между 53° с.ш. и 53° ю.ш. Казахстан он видит около 5,5% времени, а прямо над страной пролетает ещё реже — около 2%. Остальное время он работает над чужой территорией.</p>
+    <p>Поэтому группировка «только для Казахстана» физически получается глобальной сетью: по нашей модели нужно 70–80 аппаратов, столько же AST строит для США и Европы. Широта у нас та же.</p>
   </section>
 
   <section class="card">
@@ -361,13 +353,22 @@ footer{font-size:12px;color:var(--muted)}
     <p>Спутник говорит с телефоном на <b>обычных частотах мобильного оператора</b>: 700–900 МГц, иногда 1800–2100 МГц. Плюс бывает собственный спутниковый спектр (MSS), в том числе 1980–2010 / 2170–2200 МГц.</p>
     <p>FWA-спектр 4,5–4,9 ГГц для этого не подходит. На 4,7 ГГц потери на трассе почти на 16 дБ больше, чем на 800 МГц, а телефоны говорят со спутником в низких диапазонах LTE.</p>
     <p class="verdict">Без мобильной лицензии и низких частот партнёрство с AST невозможно.</p>
+    <h3>Схема для FTO: делим полосу по территории</h3>
+    <ul>
+      <li>Свой низкий диапазон в городах ставим на сайты, где уже стоит FWA n79. Там полоса работает на вышках.</li>
+      <li>Вне городов та же полоса работает через спутник. Над городами спутник лучей не включает, вокруг городов оставляем зону без спутника 15–20 км (луч на 700 МГц ~13–15 км).</li>
+      <li>Телефон в городе сам выбирает вышку: она сильнее спутника на ~24 дБ. За городом, где вышки нет, он переходит на спутник.</li>
+      <li>Вышки и спутник на одной полосе — наши, поэтому согласовывать помехи ни с кем не нужно. Нужна лицензия на полосу на всю страну.</li>
+    </ul>
+    <p><b>600 МГц.</b> В США 614–698 МГц входит в список диапазонов, разрешённых FCC для спутника. У нас 470–694 МГц занят эфирным телевидением, а iPhone, которые продаются вне США, этот диапазон обычно не поддерживают. Реальный низкий диапазон для Казахстана — 700–900 МГц.</p>
   </section>
 
   <section class="card wide">
     <h2>Оговорки</h2>
     <ul>
-      <li>Режим «Сколько нужно»: орбиты идеальные — круговые, 520 км, наклон 53°, спутники расставлены равномерно. Модель сходится с заявкой AST: при угле 10° 60–72 аппарата дают почти непрерывную связь, при 20° нужно больше сотни.</li>
-      <li>Связь считается есть, если спутник выше заданного угла. Ёмкость, лучи, погода и здания в 3D-модели не учтены — их разбирает таблица скоростей.</li>
+      <li>Режим «Сколько нужно»: орбиты идеальные — круговые, 520 км, наклон 53°, спутники расставлены равномерно. 72 аппарата дают связь 96% суток, 96 — 99%.</li>
+      <li><b>Связь считается есть, если спутник выше 15° над горизонтом.</b> Это наша оценка, AST и SpaceX своё значение не публикуют. Почему 15°: при 10° (с ним сходится заявка AST «45–60 спутников») путь до спутника 1 740 км — сигнал на 10,5 дБ слабее, чем в зените, а у Starlink даже в среднем запаса уже нет. Деревья, дома и рельеф у горизонта тоже закрывают низкие спутники. При 15° путь 1 450 км (−8,9 дБ), а горизонт в степи и сёлах обычно открыт. Для города реальный порог выше, 25–30°: там покрытие хуже, чем на странице.</li>
+      <li>Ёмкость, лучи, погода и здания в 3D-модели не учтены — их разбирает таблица скоростей.</li>
       <li>Скорости — оценка по бюджету линии с допущениями, приведёнными выше, а не замер. Независимых замеров AST внутри зданий пока нет.</li>
       <li>Территория — сетка точек через ~1° внутри границы Казахстана.</li>
     </ul>
@@ -421,7 +422,7 @@ const GROUPS={
 };
 const FEED=0x9dff8a;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const state={mode:'real',n:60,elev:10,orb:true,fp:true,link:true,speed:120,playing:!reduce,tModel:0,offset:0};
+const state={mode:'real',n:60,elev:15,orb:true,fp:true,link:true,speed:120,playing:!reduce,tModel:0,offset:0};
 const t0=Date.now();
 const $=id=>document.getElementById(id);
 
@@ -518,19 +519,25 @@ const satData=JSON.parse($('sats').textContent);
 const real={};for(const k in GROUPS)real[k]={recs:[],names:[],launch:[]};
 for(const [nm,l1,l2,g,ld] of satData){const r=satellite.twoline2satrec(l1,l2);if(!r.error){real[g].recs.push(r);real[g].names.push(nm);real[g].launch.push(Date.parse(ld+'T00:00:00Z'));}}
 const STAGES=[
- {id:'2022',label:'09.2022',until:'2022-12-31',note:'BlueWalker-3 — тестовый аппарат AST. Starlink для телефонов ещё нет.'},
- {id:'2024',label:'09.2024',until:'2024-09-30',note:'AST: +5 BlueBird первого поколения. Starlink начал выводить спутники для телефонов (с января 2024).'},
- {id:'2025',label:'12.2025',until:'2025-12-31',note:'AST: +BlueBird 6, первый большой (223 м²). Starlink для телефонов: все 637 выведены к июню 2025.'},
- {id:'2026a',label:'06.2026',until:'2026-06-30',note:'AST: BlueBird 7 потерян при запуске 19.04, +BlueBird 8–10 17.06.'},
- {id:'now',label:'08.2026 · сейчас',until:'2026-11-01',note:'AST: +BlueBird 11–13 05.08. Всего 13 аппаратов. Так выглядит небо на 01.11.2026.'},
- {id:'plan',label:'План ~45',until:'2026-11-01',note:'План AST: около 45 BlueBird для непрерывной связи в приоритетных странах, коммерция в 2027. Будущие спутники — пустые рамки, расставлены условно.'}];
-state.stage='now';
+ {id:'2022',label:'2022',until:'2022-12-31',plan:[0,0],note:'2022: BlueWalker-3 — тестовый аппарат AST (сентябрь). Starlink для телефонов ещё нет.'},
+ {id:'2023',label:'2023',until:'2023-12-31',plan:[0,0],note:'2023: AST тестирует BlueWalker-3 — первые звонки и данные на обычный телефон из космоса. Новых запусков нет.'},
+ {id:'2024',label:'2024',until:'2024-12-31',plan:[0,0],note:'2024: AST +5 BlueBird первого поколения (12.09). Starlink выводит первые спутники для телефонов с января.'},
+ {id:'2025',label:'2025',until:'2025-12-31',plan:[0,0],note:'2025: AST +BlueBird 6, первый большой, 223 м² (24.12). Starlink для телефонов: все 637 выведены к июню.'},
+ {id:'2026',label:'2026 · сейчас',until:'2026-11-01',plan:[0,0],note:'2026: BlueBird 7 потерян 19.04, +BlueBird 8–10 (17.06), +11–13 (05.08). AST — 13 аппаратов на 01.11.2026. Beeline запустил Starlink в Казахстане.'},
+ {id:'2027',label:'2027 · план',until:'2026-11-01',plan:[8,4],note:'2027, план: AST ~45 спутников — непрерывная связь в приоритетных странах, старт коммерции. Будущие спутники — пустые рамки, расстановка условная.'},
+ {id:'2028',label:'2028',until:'2026-11-01',plan:[12,4],note:'2028, оценка: ~60 спутников AST — верх диапазона 45–60, который компания называет для непрерывной связи. Срок — наша оценка.'},
+ {id:'2029',label:'2029',until:'2026-11-01',plan:[13,6],note:'2029, оценка: ~90 спутников AST — цель компании для всего мира. Срок — наша оценка, компания его не называет.'},
+ {id:'2030',label:'2030',until:'2026-11-01',plan:[13,6],note:'2030, оценка: ~90 AST. Starlink для телефонов показан на сегодня, 637: новое поколение на своём спектре 2 ГГц ожидается, но числа SpaceX не раскрыла.'}];
+state.stage='2026';
 const stageObj=()=>STAGES.find(x=>x.id===state.stage);
 const stageMs=()=>Date.parse(stageObj().until+'T23:59:59Z');
 const launched=(k,i)=>real[k].launch[i]<=stageMs();
 const countLaunched=k=>real[k].launch.filter(t=>t<=stageMs()).length;
-const PLAN_N=33,PLAN_P=11;const planList=[];for(let p=0;p<PLAN_P;p++)for(let q=0;q<PLAN_N/PLAN_P;q++)planList.push({raan:2*Math.PI*p/PLAN_P+0.13,m0:2*Math.PI*q/(PLAN_N/PLAN_P)+2*Math.PI*p/PLAN_N});
-const planOn=()=>state.stage==='plan'&&GROUPS.ast.on;
+const PLAN_MAX=78;let planList=[];
+function genPlan(P,S){const l=[];const n=P*S;for(let p=0;p<P;p++)for(let q=0;q<S;q++)l.push({raan:2*Math.PI*p/P+0.13,m0:2*Math.PI*q/S+2*Math.PI*p/n});return l;}
+function setPlan(){const [P,S]=stageObj().plan;planList=P?genPlan(P,S):[];}
+setPlan();
+const planOn=()=>planList.length>0&&GROUPS.ast.on;
 const realRoot=new THREE.Group();scene.add(realRoot);
 const astOrbits=new THREE.Group();realRoot.add(astOrbits);
 const astSats=new THREE.Group(),astFp=new THREE.Group();realRoot.add(astSats,astFp);
@@ -541,7 +548,7 @@ const matEdgeOn=new THREE.LineBasicMaterial({color:0xffb547,transparent:true,opa
 const astObjs=real.ast.recs.map(()=>{const m=new THREE.Mesh(new THREE.BoxGeometry(0.03,0.004,0.03),matAstOff);astSats.add(m);const cap=new THREE.Mesh(capGeo(0.2),matFpOff),edge=new THREE.Line(edgeGeo(0.2),matEdgeOff);astFp.add(cap,edge);return {m,cap,edge,lam:-1,u:[0,0,1],r:1};});
 const planRoot=new THREE.Group();realRoot.add(planRoot);
 const matPlan=new THREE.MeshBasicMaterial({color:0xffb547,wireframe:true,transparent:true,opacity:0.9});
-const planObjs=planList.map(()=>{const m=new THREE.Mesh(new THREE.BoxGeometry(0.03,0.004,0.03),matPlan);planRoot.add(m);const cap=new THREE.Mesh(capGeo(lambdaAt(A_MODEL,10)),matFpOff),edge=new THREE.Line(edgeGeo(lambdaAt(A_MODEL,10)),matEdgeOff);planRoot.add(cap,edge);return {m,cap,edge};});
+const planObjs=Array.from({length:PLAN_MAX},()=>{const m=new THREE.Mesh(new THREE.BoxGeometry(0.03,0.004,0.03),matPlan);planRoot.add(m);const cap=new THREE.Mesh(capGeo(lambdaAt(A_MODEL,10)),matFpOff),edge=new THREE.Line(edgeGeo(lambdaAt(A_MODEL,10)),matEdgeOff);planRoot.add(cap,edge);return {m,cap,edge};});
 let planLam=-1;
 function propEcf(rec,date,gmst){const pv=satellite.propagate(rec,date);if(!pv||!pv.position)return null;const e=satellite.eciToEcf(pv.position,gmst);const r=Math.hypot(e.x,e.y,e.z);return {u:[e.x/r,e.y/r,e.z/r],rad:r};}
 function buildAstOrbits(date){while(astOrbits.children.length){const c=astOrbits.children.pop();c.geometry.dispose();}
@@ -598,7 +605,7 @@ function dailyReal(){const job=++dayJob;const start=simDate().getTime();
       if(i<total)setTimeout(chunk,0);else{let s=0;for(const h of hits)s+=h/steps;put(out,(s/hits.length*100).toFixed(0)+' %');}}
     chunk();}
   const f=k=>real[k].recs.filter((r,i)=>launched(k,i));
-  run('ast',f('ast'),2,'rAstDay',state.stage==='plan'?planList:null);run('dtc',f('dtc'),5,'rDtcDay');}
+  run('ast',f('ast'),2,'rAstDay',planList.length?planList:null);run('dtc',f('dtc'),5,'rDtcDay');}
 let nextJob=0,lastNext=0;
 function nextPass(){const now=simDate().getTime();for(let s=0;s<=86400;s+=30){const d=new Date(now+s*1000),gm=satellite.gstime(d);
   for(const [ii,rec] of real.ast.recs.entries()){if(!launched('ast',ii))continue;const p=propEcf(rec,d,gm);if(!p)continue;const cl=Math.cos(lambdaAt(p.rad,state.elev));if(p.u[0]*phoneU[0]+p.u[1]*phoneU[1]+p.u[2]*phoneU[2]>cl){put('rNext',s===0?'сейчас над ним':'через '+(s<3600?Math.round(s/60)+' мин':Math.floor(s/3600)+' ч '+Math.round(s%3600/60)+' мин'));return;}}}
@@ -609,7 +616,7 @@ let linkState='none';
 function simDate(){return new Date(t0+state.offset*1000);}
 function hudReal(d,linked){const hh=String(d.getUTCHours()).padStart(2,'0'),mm=String(d.getUTCMinutes()).padStart(2,'0'),dd=String(d.getUTCDate()).padStart(2,'0'),mo=String(d.getUTCMonth()+1).padStart(2,'0');
   const kz=new Date(d.getTime()+5*3600000);
-  $('hud').textContent=(state.stage!=='now'?'Состав на '+stageObj().label+' · ':'')+`${dd}.${mo} ${hh}:${mm} UTC (Казахстан ${String(kz.getUTCHours()).padStart(2,'0')}:${String(kz.getUTCMinutes()).padStart(2,'0')})`+(state.link?(linkState==='full'?' · '+PHONE.n+' на связи через AST':(linkState==='half'?' · спутник видит '+PHONE.n+', но шлюз в Алматы вне его зоны — нужен второй шлюз':' · над '+PHONE.over+' нет спутника AST')):'');}
+  $('hud').textContent=(state.stage!=='2026'?'Состав на '+stageObj().label+' · ':'')+`${dd}.${mo} ${hh}:${mm} UTC (Казахстан ${String(kz.getUTCHours()).padStart(2,'0')}:${String(kz.getUTCMinutes()).padStart(2,'0')})`+(state.link?(linkState==='full'?' · '+PHONE.n+' на связи через AST':(linkState==='half'?' · спутник видит '+PHONE.n+', но шлюз в Алматы вне его зоны — нужен второй шлюз':' · над '+PHONE.over+' нет спутника AST')):'');}
 
 // ---------- update ----------
 let lastPts=0,lastOrbitBuild=0;
@@ -631,11 +638,12 @@ function updateReal(nowMs){
   planRoot.visible=planOn();
   if(planOn()){const lam=lambdaAt(A_MODEL,state.elev);if(Math.abs(lam-planLam)>0.004){planObjs.forEach(o=>{o.cap.geometry.dispose();o.edge.geometry.dispose();o.cap.geometry=capGeo(lam);o.edge.geometry=edgeGeo(lam);});planLam=lam;}
     const cl=Math.cos(lam),r=A_MODEL/R,ts=(d.getTime()-t0)/1000;
+    planObjs.forEach((o,i)=>{const vis=i<planList.length;o.m.visible=vis;if(!vis){o.cap.visible=o.edge.visible=false;}});
     planList.forEach((sp,i)=>{const o=planObjs[i];const u=modelECEF(sp,ts);o.m.position.copy(toScene(u,r));o.m.lookAt(0,0,0);o.cap.quaternion.setFromUnitVectors(yUp,toScene(u,1).normalize());o.edge.quaternion.copy(o.cap.quaternion);
       o.cap.visible=o.edge.visible=state.fp;const on=coverMark(u,cl,mark);if(on)seen++;o.cap.material=on?matFpOn:matFpOff;o.edge.material=on?matEdgeOn:matEdgeOff;
       const dp=u[0]*phoneU[0]+u[1]*phoneU[1]+u[2]*phoneU[2],dg=u[0]*gwU[0]+u[1]*gwU[1]+u[2]*gwU[2];if(dp>cl&&dg>cl&&dp>bestDot){bestDot=dp;best={u,r};}});}
   let c=0;for(const v of mark)c+=v;
-  put('rAst',seen+' из '+(countLaunched('ast')+(planOn()?PLAN_N:0)));put('rAstCov',Math.round(c/kzPts.length*100)+' %');
+  put('rAst',seen+' из '+(countLaunched('ast')+(planOn()?planList.length:0)));put('rAstCov',Math.round(c/kzPts.length*100)+' %');
   const show=state.link&&astOn&&!!best;upLine.visible=fdLine.visible=show;if(show)setLink(best.u,best.r);
   const half=state.link&&astOn&&!best&&bestP.d>0;if(half){setLink(bestP.u,bestP.r);upLine.visible=true;fdLine.visible=false;}
   linkState=show?'full':(half?'half':'none');
@@ -703,7 +711,7 @@ function renderLegend(){const box=$('legend3d');box.innerHTML='';
     const t=document.createElement('span');t.textContent=txt;d.append(sw,t);box.appendChild(d);};
   if(state.mode==='real'){
     if(GROUPS.ast.on)row('#ffb547','sq','AST — крупные квадраты, '+countLaunched('ast')+' шт.');
-    if(planOn())row('#ffb547','sq','план AST — пустые рамки, +'+PLAN_N);
+    if(planOn())row('#ffb547','sq','план AST — пустые рамки, +'+planList.length);
     if(GROUPS.dtc.on)row('#4fd1ff','dot','Starlink для телефонов — точки, '+countLaunched('dtc'));
     if(GROUPS.kazsat.on)row('#ffffff','sq','KazSat — белые кубы на дальнем кольце');
     for(const k of ['oneweb','kuiper','qianfan'])if(GROUPS[k].on)row(GROUPS[k].css,'dot',GROUPS[k].name+' — точки, '+countLaunched(k));
@@ -730,8 +738,8 @@ for(const k in GROUPS){const g=GROUPS[k];const lab=document.createElement('label
 function segBind(id,attr,onPick){const btns=[...$(id).querySelectorAll('button')];const paint=v=>btns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[attr]===String(v))));
   btns.forEach(b=>b.addEventListener('click',()=>{onPick(b.dataset[attr]);paint(b.dataset[attr]);}));return paint;}
 {const box=$('segS');for(const st of STAGES){const b=document.createElement('button');b.type='button';b.dataset.s=st.id;b.textContent=st.label;box.appendChild(b);}}
-const paintS=segBind('segS','s',v=>{state.stage=v;$('stageNote').textContent=stageObj().note;lastPts=0;lastNext=0;dailyReal();renderLegend();});
-paintS('now');$('stageNote').textContent=stageObj().note;
+const paintS=segBind('segS','s',v=>{state.stage=v;setPlan();$('stageNote').textContent=stageObj().note;lastPts=0;lastNext=0;dailyReal();renderLegend();});
+paintS('2026');$('stageNote').textContent=stageObj().note;
 function setLayer(k,on){GROUPS[k].on=on;const cb=$('lay_'+k);if(cb)cb.checked=on;const ch=document.querySelector('.chip[data-k="'+k+'"]');if(ch)ch.setAttribute('aria-pressed',String(on));lastPts=0;renderLegend();
   if(k==='kazsat'){autoZoom();$('btnKaz').textContent=on?'Вернуться к Казахстану':'Показать KazSat';}}
 {const bar=$('chipbar');const short={ast:'AST',dtc:'Starlink',kazsat:'KazSat',oneweb:'OneWeb',kuiper:'Kuiper',qianfan:'Qianfan'};
@@ -744,7 +752,6 @@ for(const k in GROUPS){const cb=$('lay_'+k);if(cb)cb.addEventListener('change',(
  sel.addEventListener('change',apply);apply();}
 const paintM=segBind('segM','m',v=>setMode(v));
 const paintN=segBind('segN','n',v=>{state.n=+v;buildModel();dailyModel();});
-const paintE=segBind('segE','e',v=>{state.elev=+v;if(state.mode==='model'){buildModel();dailyModel();}else dailyReal();});
 function setMode(m){state.mode=m;$('grpReal').hidden=m!=='real';$('grpModel').hidden=m!=='model';$('chipbar').style.visibility=m==='real'?'visible':'hidden';
   if(m==='real'){realStatsLayout();dailyReal();lastPts=0;lastNext=0;}else{modelStatsLayout();buildModel();dailyModel();}spdLabel();renderLegend();if(tween!==undefined&&typeof autoZoom==='function')autoZoom();}
 const bind=(id,key)=>$(id).addEventListener('change',e=>{state[key]=e.target.checked;});
@@ -758,7 +765,7 @@ spd.addEventListener('input',spdLabel);
 const play=$('play');const playLabel=()=>{play.textContent=state.playing?'Пауза':'Пуск';};
 play.addEventListener('click',()=>{state.playing=!state.playing;playLabel();});playLabel();
 
-paintM('real');paintN(state.n);paintE(state.elev);
+paintM('real');paintN(state.n);
 buildModel();setMode('real');
 requestAnimationFrame(loop);
 })();
