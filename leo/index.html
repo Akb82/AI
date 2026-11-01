@@ -555,7 +555,7 @@ const SYNTH_MAX={kuiper:3236,qianfan:13648};
 const FUT={'2027':{kuiper:1100,qianfan:648},'2028':{kuiper:1618,qianfan:4648},'2029':{kuiper:3236,qianfan:8648},'2030':{kuiper:3236,qianfan:13648}};
 const synth={kuiper:[],qianfan:[]};
 function shellList(k,n){const sh=SHELL[k],a=R+sh.alt,nm=Math.sqrt(MU/(a*a*a)),inc=sh.inc*D2R;const P=Math.max(1,Math.round(Math.sqrt(n/1.5)));const l=[];
-  for(let i=0;i<n;i++){const p=i%P,q=Math.floor(i/P),S=Math.ceil(n/P);l.push({raan:2*Math.PI*p/P+0.21,m0:2*Math.PI*q/S+2*Math.PI*p/n,nm,inc});}return l;}
+  for(let i=0;i<n;i++){const p=i%P,q=Math.floor(i/P),S=Math.ceil(n/P),ph=(p*0.6180339887)%1;l.push({raan:2*Math.PI*p/P+0.21,m0:2*Math.PI*(q+ph)/S,nm,inc});}return l;}
 function shellECEF(sp,t){const u=sp.m0+sp.nm*t,cO=Math.cos(sp.raan),sO=Math.sin(sp.raan),cu=Math.cos(u),su=Math.sin(u),ci=Math.cos(sp.inc),si=Math.sin(sp.inc);
   const x=cO*cu-sO*su*ci,y=sO*cu+cO*su*ci,z=su*si,th=WE*t,ct=Math.cos(th),st=Math.sin(th);return [x*ct+y*st,-x*st+y*ct,z];}
 function setSynth(){for(const k of ['kuiper','qianfan']){const tgt=(FUT[state.stage]||{})[k]||0;const ex=Math.max(0,tgt-countLaunched(k));synth[k]=ex?shellList(k,ex):[];}}
