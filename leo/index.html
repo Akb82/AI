@@ -88,12 +88,15 @@ td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:now
 .src{font-size:13px;color:var(--muted)}
 .src li{word-break:break-word}
 footer{font-size:12px;color:var(--muted)}
-.imgattr{position:absolute;right:12px;top:12px;font-size:10px;color:#c9d4e6;background:rgba(7,11,20,.7);padding:2px 6px;border-radius:4px}
+.resetbtn{position:absolute;right:12px;top:12px;font:600 13px var(--f-body);color:var(--fg);background:rgba(19,28,47,.9);border:1px solid var(--line);border-radius:999px;padding:8px 13px;cursor:pointer;z-index:2}
+.resetbtn:active{transform:scale(.97)}
+@media (max-width:900px){.resetbtn{top:auto;bottom:12px;right:12px}.hud{right:auto;max-width:calc(100% - 170px)}}
+.imgattr{position:absolute;right:12px;top:54px;font-size:10px;color:#c9d4e6;background:rgba(7,11,20,.7);padding:2px 6px;border-radius:4px}
 .legend3d{position:absolute;left:12px;top:12px;display:grid;gap:4px;font-size:12px;background:rgba(7,11,20,.78);border:1px solid var(--line);border-radius:8px;padding:8px 10px;pointer-events:none;max-width:60%}
 .legend3d div{display:flex;align-items:center;gap:7px;white-space:nowrap}
 .legend3d .sw{flex:none;display:inline-block}
 .legend3d .note2{color:var(--muted);font-size:11px;white-space:normal}
-@media (max-width:900px){.legend3d{top:auto;bottom:62px;font-size:10px;padding:5px 7px;gap:2px}.legend3d .note2{display:none}}
+@media (max-width:900px){.legend3d{top:62px;bottom:auto;font-size:10px;padding:5px 7px;gap:2px;max-width:calc(100% - 24px)}.legend3d .note2{display:none}.hud{font-size:10px;padding:4px 7px}}
 .tag.pick{border-color:var(--accent);color:var(--accent)}
 .legend3d img.lg{height:11px;width:auto;flex:none}
 .legend3d img.lg.light{background:#fff;border-radius:3px;padding:1px 3px}
@@ -151,6 +154,7 @@ footer{font-size:12px;color:var(--muted)}
     <div class="imgattr" id="imgAttr" hidden>Снимки: Esri World Imagery (Maxar, Earthstar Geographics)</div>
     <div class="hint">тяните, чтобы вращать · колесо — масштаб</div>
     <button type="button" class="lockbtn" id="lockBtn" hidden>Крутить глобус</button>
+    <button type="button" class="resetbtn" id="resetBtn" aria-label="Вернуть вид на Казахстан">⟲ К Казахстану</button>
   </div>
   <aside class="panel">
     <div class="chipbar" id="chipbar" aria-label="Группировки"></div>
@@ -773,6 +777,7 @@ bind('chkOrb','orb');bind('chkFp','fp');bind('chkLink','link');$('chkLink').addE
 $('btnKaz').addEventListener('click',()=>setLayer('kazsat',!GROUPS.kazsat.on));
 for(const id of ['lay_kazsat'])$(id).addEventListener('change',()=>{$('btnKaz').textContent=GROUPS.kazsat.on?'Вернуться к Казахстану':'Показать KazSat';});
 $('btnNow').addEventListener('click',()=>{state.offset=0;lastNext=0;dailyReal();});
+$('resetBtn').addEventListener('click',()=>{controls.target.set(0,0,0);autoZoom();});
 const spd=$('spd'),spdTxt=$('spdTxt');
 function spdLabel(){state.speed=+spd.value;spdTxt.textContent='×'+state.speed+(state.speed===1?' — реальное время':': виток (~95 мин) за '+Math.max(1,Math.round(5700/state.speed))+' с');}
 spd.addEventListener('input',spdLabel);
