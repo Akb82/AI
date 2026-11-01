@@ -1,0 +1,227 @@
+{
+ "title": "Спутники над Казахстаном: связь спутник — обычный телефон",
+ "prepared": "2026-11-01",
+ "url": "https://leo.kairat.app",
+ "text_version": "https://leo.kairat.app/summary.md",
+ "real_constellations_2026_11_01": {
+  "source": "CelesTrak GP, SGP4",
+  "groups": [
+   {
+    "name": "AST SpaceMobile",
+    "count": 13,
+    "catalog_names": "SPACEMOBILE-001..013, BLUEWALKER-3",
+    "inclination_deg": 53,
+    "altitude_km": "450-550"
+   },
+   {
+    "name": "Starlink Direct-to-Cell",
+    "count": 637,
+    "catalog_names": "STARLINK-xxxxx [DTC]",
+    "altitude_km": "350-375"
+   },
+   {
+    "name": "KazSat",
+    "count": 2,
+    "items": [
+     {
+      "name": "KazSat-2",
+      "longitude_deg_e": 86.5
+     },
+     {
+      "name": "KazSat-3",
+      "longitude_deg_e": 58.5
+     }
+    ],
+    "altitude_km": 35786
+   },
+   {
+    "name": "OneWeb",
+    "count": 651
+   },
+   {
+    "name": "Amazon Kuiper",
+    "count": 391
+   },
+   {
+    "name": "Qianfan",
+    "count": 257
+   }
+  ],
+  "kazakhstan_daily_coverage_share_avg_point": {
+   "AST": {
+    "10deg": 0.27,
+    "20deg": 0.16,
+    "30deg": 0.09
+   },
+   "Starlink_DTC": {
+    "10deg": 1.0,
+    "20deg": 1.0,
+    "30deg": 0.93
+   }
+  }
+ },
+ "walker_model": {
+  "assumptions": "Walker, circular 520 km, inclination 53 deg, 251 grid points in Kazakhstan, 24h step 60 s; not optimized",
+  "coverage_avg_worst_percent": {
+   "13_10": {
+    "avg": 24,
+    "worst": 19
+   },
+   "13_20": {
+    "avg": 18,
+    "worst": 14
+   },
+   "13_30": {
+    "avg": 10,
+    "worst": 7
+   },
+   "45_10": {
+    "avg": 83,
+    "worst": 69
+   },
+   "45_20": {
+    "avg": 52,
+    "worst": 30
+   },
+   "45_30": {
+    "avg": 31,
+    "worst": 15
+   },
+   "60_10": {
+    "avg": 96,
+    "worst": 89
+   },
+   "60_20": {
+    "avg": 61,
+    "worst": 48
+   },
+   "60_30": {
+    "avg": 37,
+    "worst": 23
+   },
+   "72_10": {
+    "avg": 100,
+    "worst": 99
+   },
+   "72_20": {
+    "avg": 85,
+    "worst": 71
+   },
+   "72_30": {
+    "avg": 56,
+    "worst": 38
+   },
+   "96_10": {
+    "avg": 100,
+    "worst": 100
+   },
+   "96_20": {
+    "avg": 84,
+    "worst": 81
+   },
+   "96_30": {
+    "avg": 54,
+    "worst": 48
+   }
+  },
+  "key_format": "<satellites>_<min elevation deg>"
+ },
+ "footprint_radius_km_520km": {
+  "10deg": 1600,
+  "20deg": 1080,
+  "30deg": 760
+ },
+ "beam_width_km_15m_array": {
+  "800MHz": 13,
+  "1800MHz": 5.8,
+  "2300MHz": 4.5
+ },
+ "slant_range_km_520km": {
+  "10deg": 1743,
+  "20deg": 1233,
+  "30deg": 943,
+  "90deg": 520
+ },
+ "measurements": {
+  "starlink_dtc_usa": {
+   "source": "arXiv 2506.00283",
+   "samples": ">1,000,000",
+   "period": "2024-10..2025-04",
+   "median_rsrp_dbm": -121,
+   "terrestrial_median_rsrp_dbm": -97,
+   "median_sinr_db": 0,
+   "capacity_per_beam_mbps": 4,
+   "bandwidth_mhz": 5,
+   "indoor_measurements": "none"
+  },
+  "beeline_kz": {
+   "source": "beeline.kz/ru/starlink",
+   "speed": "up to 2 Mbit/s",
+   "requirement": "clear view of the sky",
+   "launch": "2026-09-28"
+  },
+  "t_satellite_hands_on": {
+   "download_mbps": 1.7,
+   "upload_mbps": 0.2,
+   "latency_ms": ">200"
+  },
+  "ast_peak_block1_mbps": 98.9,
+  "ast_block2_claim_mbps_per_cell": "120-200"
+ },
+ "indoor_forecast_ast_model": {
+  "assumptions": "10+10 MHz at 700 MHz, single user in beam, DL outdoor SNR 15 dB assumed, UL link budget phone 23 dBm, 223 m2 array, 800 km; not measured",
+  "rows": [
+   {
+    "place": "open sky",
+    "loss_db": "0",
+    "dl_mbps": "up to 38",
+    "ul_mbps": "up to 15"
+   },
+   {
+    "place": "car / near ordinary window",
+    "loss_db": "5-10",
+    "dl_mbps": "15-26",
+    "ul_mbps": "3-7"
+   },
+   {
+    "place": "private brick house, mid-room",
+    "loss_db": "15-20",
+    "dl_mbps": "3-7",
+    "ul_mbps": "0.3-0.9"
+   },
+   {
+    "place": "apartment block, ordinary walls (ITU median)",
+    "loss_db": "17-25",
+    "dl_mbps": "0-3",
+    "ul_mbps": "0.1-0.3"
+   },
+   {
+    "place": "monolith / low-E glass",
+    "loss_db": "34-42",
+    "dl_mbps": "no service",
+    "ul_mbps": "no service"
+   },
+   {
+    "place": "elevator / basement",
+    "loss_db": "40+",
+    "dl_mbps": "no service",
+    "ul_mbps": "no service"
+   }
+  ]
+ },
+ "kazsat_vs_leo": {
+  "distance_ratio": 69,
+  "extra_path_loss_db": 37,
+  "one_way_delay_s": 0.24
+ },
+ "spectrum": "D2C uses operator low-band 700-2100 MHz or MSS (e.g. 1980-2010/2170-2200 MHz); FWA 4.5-4.9 GHz unsuitable (+16 dB path loss vs 800 MHz)",
+ "ast_facts": {
+  "satellites_in_orbit": 13,
+  "as_of": "2026-08-10",
+  "bluebird7_lost": "2026-04-19",
+  "continuous_coverage_target": "45-60 satellites",
+  "global": "~90",
+  "capex_per_satellite_usd_m": "21-23",
+  "q2_2026_revenue_usd_m": 31.5
+ }
+}
