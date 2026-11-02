@@ -223,8 +223,6 @@
    "note": "доля времени, когда спутник выше 15° хотя бы над одной точкой территории; расчёт глобуса"
   },
   "breakeven_estimate": {
-   "paying_subs_mln": "14-18",
-   "arpu_usd_month": 3,
    "annual_cost_usd_bn": "0.5-0.65",
    "status": "оценка"
   },
@@ -249,6 +247,24 @@
    "KEN": 71.4,
    "MYS": 49.7
   },
-  "status": "гипотеза для обсуждения, не договорённости"
+  "status": "гипотеза для обсуждения, не договорённости",
+  "retail_kz_estimate": {
+   "note": "база — не все SIM, а люди вне покрытия вышек; оценка",
+   "segments_thousand": {
+    "villages_without_coverage": "100-250",
+    "mining_remote": "60-120",
+    "long_haul_drivers": "95-160",
+    "pastures_fieldwork": "105-210",
+    "total": "360-740"
+   },
+   "take_rate": "30-60%",
+   "price_usd_month": "5-10",
+   "revenue_usd_mln_year": "7-53",
+   "kz_total_with_gov_usd_bn": "0.04-0.13",
+   "share_of_need": "6-27%",
+   "club_core_retail_usd_mln": "30-200",
+   "club_total_all_sources_usd_bn": "0.26-0.83",
+   "operator_option_lever": "каждые $0,1 с SIM в месяц: $31 млн/год РК, $0,24 млрд/год ядро клуба — переговоры, не прогноз"
+  }
  }
 }
