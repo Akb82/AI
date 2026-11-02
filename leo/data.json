@@ -202,5 +202,53 @@
   "q2_2026_revenue_usd_m": 31.5
  },
  "min_elevation_deg": 15,
- "min_elevation_rationale": "our estimate; 10 deg matches AST 45-60 claim but slant 1743 km (-10.5 dB vs zenith); 15 deg slant 1452 km (-8.9 dB); urban realistic 25-30 deg"
+ "min_elevation_rationale": "our estimate; 10 deg matches AST 45-60 claim but slant 1743 km (-10.5 dB vs zenith); 15 deg slant 1452 km (-8.9 dB); urban realistic 25-30 deg",
+ "presentation": {
+  "title": "Казахстанская спутниковая группировка: экономика, сроки, Байконур",
+  "text": "https://leo.kairat.app/deck.md",
+  "slides": "https://leo.kairat.app/deck/",
+  "date": "2026-11-02"
+ },
+ "club_model": {
+  "constellation": {
+   "satellites": "72-96",
+   "altitude_km": 520,
+   "inclination_deg": 53,
+   "planes": 12
+  },
+  "one_satellite_time_share_pct": {
+   "kazakhstan": 5.5,
+   "club_core": 9.6,
+   "core_plus_wave2": 25.4,
+   "note": "доля времени, когда спутник выше 15° хотя бы над одной точкой территории; расчёт глобуса"
+  },
+  "breakeven_estimate": {
+   "paying_subs_mln": "14-18",
+   "arpu_usd_month": 3,
+   "annual_cost_usd_bn": "0.5-0.65",
+   "status": "оценка"
+  },
+  "sim_mln_source": "World Bank IT.CEL.SETS, 2024 (TJK 2023, TKM 2021)",
+  "core": {
+   "KAZ": 26.2,
+   "UZB": 40.2,
+   "TUR": 94.3,
+   "AZE": 11.3,
+   "KGZ": 7.7,
+   "TJK": 7.9,
+   "TKM": 6.3,
+   "MNG": 4.9
+  },
+  "wave2": {
+   "IDN": 347.3,
+   "PAK": 193.1,
+   "BRA": 216.1,
+   "MEX": 152.4,
+   "NGA": 164.6,
+   "EGY": 113.2,
+   "KEN": 71.4,
+   "MYS": 49.7
+  },
+  "status": "гипотеза для обсуждения, не договорённости"
+ }
 }
