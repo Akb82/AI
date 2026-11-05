@@ -193,10 +193,15 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
         <button type="button" data-n="72">72</button>
         <button type="button" data-n="96">96</button>
       </div>
-      <div class="note">Идеальная равномерная расстановка: 520 км, наклон 53°, как у AST.</div>
+      <div class="lbl" style="margin-top:6px">Тип связи</div>
+      <div class="seg" id="segV">
+        <button type="button" data-v="phone">На телефон</button>
+        <button type="button" data-v="term">На терминал</button>
+      </div>
+      <div class="note" id="modelNote">Связь на телефон (класс AST): 520 км, наклон 53°, угол над горизонтом 15°.</div>
     </div>
     <div class="group" id="grpClub" hidden>
-      <div class="note"><b>Своя группировка клуба:</b> 72–96 спутников, 520 км, 53°. <span style="color:#f5a145">Оранжевым</span> — ядро клуба (тюркские страны, Центральная Азия, Монголия), <span style="color:#b48cff">фиолетовым</span> — кандидаты второй волны. Подробно — в разделе <a href="#club">«Своя группировка и клуб стран»</a>.</div>
+      <div class="note"><b>Своя группировка клуба.</b> На телефон: 72–96 спутников, 520 км. На терминал (антенна как Starlink Mini): 48–60 спутников, 1 200 км — закрывают пояс от Турции до Монголии без перерывов. <span style="color:#f5a145">Оранжевым</span> — ядро клуба (тюркские страны, Центральная Азия, Монголия), <span style="color:#b48cff">фиолетовым</span> — кандидаты второй волны. Подробно — в разделе <a href="#club">«Своя группировка и клуб стран»</a>.</div>
     </div>
     <div class="group">
       <div class="lbl">Слои</div>
@@ -215,7 +220,7 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
       <div class="note" id="spdTxt"></div>
     </div>
     <div class="stats" id="stats"></div>
-    <div class="note">Связь считаем, если спутник выше 15° над горизонтом — почему, сказано в «Оговорках» ниже.</div>
+    <div class="note" id="elevNote">Связь считаем, если спутник выше 15° над горизонтом — почему, сказано в «Оговорках» ниже.</div>
   </aside>
 </div>
 
@@ -394,6 +399,19 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
     <p>Так могла бы выглядеть своя группировка: 72–96 спутников на высоте 520 км с наклоном 53°, 12 плоскостей орбит, как у AST. Включите на глобусе режим <b>«Своя группировка»</b>: <button type="button" class="btn" id="btnClub">Показать на глобусе</button></p>
     <p>Почему нужен клуб, глобус считает сам. Спутник облетает Землю за 95 минут и видит Казахстан <b>5,5% времени</b>, ядро клуба — <b>9,6%</b>, ядро вместе со второй волной — <b>25,4%</b>. Остальное время он летит над океаном и чужими странами. Чем шире клуб по долготе, тем больше времени каждый спутник зарабатывает.</p>
     <p>SIM в таблицах ниже — размер рынка страны, а не платящие. Городскую мобильную связь спутник не заменяет, платить будут только те, кто живёт и работает вне вышек. В Казахстане это 0,36–0,74 млн человек (сёла без связи, горнодобыча, дальнобой, пастбища), они дадут $7–53 млн в год при нужных $0,5–0,65 млрд. Поэтому группировку окупают госконтракты стран клуба и дополнительные приборы на спутниках, а не розница. Вторая волна нужна, чтобы спутники работали над другими долготами и под госконтракты других стран. Расчёт — в <a href="/deck/#s15">презентации, слайды 14–17</a>.</p>
+    <h3>Два варианта группировки</h3>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>На терминал (антенна как Starlink Mini)</th><th>На телефон (класс AST)</th></tr></thead>
+      <tbody>
+        <tr><td>Орбита</td><td class="n">1 200 км, 53°</td><td class="n">520 км, 53°</td></tr>
+        <tr><td>Спутников для связи без перерывов над поясом Турция–Монголия</td><td class="n"><b>48–60</b></td><td class="n"><b>72–96</b></td></tr>
+        <tr><td>Спутник</td><td>150–300 кг, покупная платформа класса OneWeb</td><td>6 т, антенна 223 м², своя разработка</td></tr>
+        <tr><td>Скорость на абонента</td><td class="n">50–150 Мбит/с</td><td class="n">до 20 Мбит/с, обещают больше</td></tr>
+        <tr><td>До рабочей группировки</td><td class="n">4–6 лет, $1,5–2,5 млрд (оценка с рисками)</td><td class="n">6–8 лет, $3–4 млрд</td></tr>
+        <tr><td>Против кого</td><td>Thuraya (в 100 раз быстрее), Iridium; аргумент — суверенитет</td><td>Starlink в телефоне, AST</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Первый шаг — терминалы: это решённая инженерная задача, платформы покупаются, запуск на Falcon 9 или LVM3. Оценка стоимости — по аналогам OneWeb ($3,4 млрд до банкротства при 74 спутниках), Iridium NEXT ($3 млрд, 81 спутник), Telesat Lightspeed (~$10 млн за спутник в серии). Содержание 54 спутников — $0,15–0,25 млрд в год. Подробно — в <a href="/deck/#s22">презентации, слайды 22–26</a>.</p>
     <h3>Ядро: тюркские страны, Центральная Азия, Монголия</h3>
     <div class="tbl"><table>
       <thead><tr><th>Страна</th><th>SIM, млн</th><th>Почему</th></tr></thead>
@@ -497,8 +515,10 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
 (function(){
 'use strict';
 const R=6371, MU=398600.4418, WE=7.2921159e-5, D2R=Math.PI/180;
-const H_MODEL=520, A_MODEL=R+H_MODEL, N_MODEL=Math.sqrt(MU/(A_MODEL**3)), INC=53*D2R;
-const PRESETS={13:[13,1,0],45:[9,5,1],60:[10,6,1],72:[12,6,1],96:[12,8,1]};
+let H_MODEL=520, A_MODEL=R+H_MODEL, N_MODEL=Math.sqrt(MU/(A_MODEL**3)), INC=53*D2R;
+const VARIANTS={phone:{h:520,inc:53,elev:15,presets:{13:[13,1,0],45:[9,5,1],60:[10,6,1],72:[12,6,1],96:[12,8,1]},ns:[13,45,60,72,96],note:'Связь на телефон (класс AST): 520 км, наклон 53°, угол над горизонтом 15°.'},term:{h:1200,inc:53,elev:25,presets:{36:[6,6,0],48:[8,6,1],54:[9,6,1],60:[10,6,3],72:[12,6,1]},ns:[36,48,54,60,72],note:'Связь на терминал (класс OneWeb, антенна как Starlink Mini): 1 200 км, наклон 53°, угол над горизонтом 25°.'}};
+function setVariant(k){const v=VARIANTS[k];state.variant=k;H_MODEL=v.h;A_MODEL=R+H_MODEL;N_MODEL=Math.sqrt(MU/(A_MODEL**3));INC=v.inc*D2R;state.elev=v.elev;PRESETS=v.presets;const seg=$('segN');seg.innerHTML=v.ns.map(n=>'<button type="button" data-n="'+n+'">'+n+'</button>').join('');$('modelNote').textContent=v.note;const en=$('elevNote');if(en)en.textContent='Связь считаем, если спутник выше '+v.elev+'° над горизонтом'+(k==='phone'?' — почему, сказано в «Оговорках» ниже.':' — у плоской антенны терминала ниже луч не держится.');if(!(state.n in PRESETS))state.n=v.ns[Math.min(2,v.ns.length-1)];}
+let PRESETS=VARIANTS.phone.presets;
 const PLACES=[{n:'Балхаш',over:'Балхашем',lat:46.85,lon:74.98,d:'город у озера, 380 км от Алматы'},{n:'Бейнеу',over:'Бейнеу',lat:45.32,lon:55.19,d:'запад, пустыня, 1 800 км от Алматы'},{n:'Улытау',over:'Улытау',lat:48.65,lon:67.0,d:'центр, степь'},{n:'Зайсан',over:'Зайсаном',lat:47.47,lon:84.87,d:'восток, горы'}];
 let PHONE=PLACES[0];const GW={lat:43.24,lon:76.89};
 const GROUPS={
@@ -511,7 +531,7 @@ const GROUPS={
 };
 const FEED=0x9dff8a;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const state={mode:'real',n:60,elev:15,orb:true,fp:true,link:true,speed:120,playing:!reduce,tModel:0,offset:0};
+const state={mode:'real',variant:'phone',n:60,elev:15,orb:true,fp:true,link:true,speed:120,playing:!reduce,tModel:0,offset:0};
 const t0=Date.now();
 const $=id=>document.getElementById(id);
 
@@ -883,7 +903,8 @@ for(const k in GROUPS){const cb=$('lay_'+k);if(cb)cb.addEventListener('change',(
  sel.addEventListener('change',apply);apply();}
 const paintM=segBind('segM','m',v=>setMode(v));
 $('btnClub').addEventListener('click',()=>{paintM('club');setMode('club');$('view').scrollIntoView({behavior:'smooth'});});
-const paintN=segBind('segN','n',v=>{state.n=+v;buildModel();dailyModel();});
+let paintN=segBind('segN','n',v=>{state.n=+v;buildModel();dailyModel();});
+const paintV=segBind('segV','v',v=>{setVariant(v);paintN=segBind('segN','n',x=>{state.n=+x;buildModel();dailyModel();});paintN(state.n);buildModel();dailyModel();renderLegend();spdLabel();});
 function setMode(m){state.mode=m;$('grpReal').hidden=m!=='real';$('grpModel').hidden=m==='real';$('grpClub').hidden=m!=='club';if(m==='club'&&!clubTex)clubTex=makeTexture(true);globeMat.map=m==='club'?clubTex:baseTex;globeMat.needsUpdate=true;if(m==='club'&&state.n<72){state.n=72;paintN(72);}$('chipbar').style.visibility=m==='real'?'visible':'hidden';
   if(m==='real'){realStatsLayout();dailyReal();lastPts=0;lastNext=0;}else{modelStatsLayout();buildModel();dailyModel();}spdLabel();renderLegend();if(tween!==undefined&&typeof autoZoom==='function')autoZoom();}
 const bind=(id,key)=>$(id).addEventListener('change',e=>{state[key]=e.target.checked;});
@@ -893,12 +914,12 @@ for(const id of ['lay_kazsat'])$(id).addEventListener('change',()=>{$('btnKaz').
 $('btnNow').addEventListener('click',()=>{state.offset=0;lastNext=0;dailyReal();});
 $('resetBtn').addEventListener('click',()=>{controls.target.set(0,0,0);autoZoom();});
 const spd=$('spd'),spdTxt=$('spdTxt');
-function spdLabel(){state.speed=+spd.value;spdTxt.textContent='×'+state.speed+(state.speed===1?' — реальное время':': виток (~95 мин) за '+Math.max(1,Math.round(5700/state.speed))+' с');}
+function spdLabel(){state.speed=+spd.value;const per=state.mode==='real'?5700:2*Math.PI/N_MODEL;spdTxt.textContent='×'+state.speed+(state.speed===1?' — реальное время':': виток (~'+Math.round(per/60)+' мин) за '+Math.max(1,Math.round(per/state.speed))+' с');}
 spd.addEventListener('input',spdLabel);
 const play=$('play');const playLabel=()=>{play.textContent=state.playing?'Пауза':'Пуск';};
 play.addEventListener('click',()=>{state.playing=!state.playing;playLabel();});playLabel();
 
-paintM('real');paintN(state.n);
+paintM('real');paintV('phone');paintN(state.n);
 buildModel();setMode('real');
 requestAnimationFrame(loop);
 })();
