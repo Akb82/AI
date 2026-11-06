@@ -210,61 +210,104 @@
   "date": "2026-11-02"
  },
  "club_model": {
+  "updated": "2026-11-06",
   "constellation": {
-   "satellites": "72-96",
-   "altitude_km": 520,
-   "inclination_deg": 53,
-   "planes": 12
-  },
-  "one_satellite_time_share_pct": {
-   "kazakhstan": 5.5,
-   "club_core": 9.6,
-   "core_plus_wave2": 25.4,
-   "note": "доля времени, когда спутник выше 15° хотя бы над одной точкой территории; расчёт глобуса"
-  },
-  "breakeven_estimate": {
-   "annual_cost_usd_bn": "0.5-0.65",
-   "status": "оценка"
-  },
-  "sim_mln_source": "World Bank IT.CEL.SETS, 2024 (TJK 2023, TKM 2021)",
-  "core": {
-   "KAZ": 26.2,
-   "UZB": 40.2,
-   "TUR": 94.3,
-   "AZE": 11.3,
-   "KGZ": 7.7,
-   "TJK": 7.9,
-   "TKM": 6.3,
-   "MNG": 4.9
-  },
-  "wave2": {
-   "IDN": 347.3,
-   "PAK": 193.1,
-   "BRA": 216.1,
-   "MEX": 152.4,
-   "NGA": 164.6,
-   "EGY": 113.2,
-   "KEN": 71.4,
-   "MYS": 49.7
-  },
-  "status": "гипотеза для обсуждения, не договорённости",
-  "retail_kz_estimate": {
-   "note": "база — не все SIM, а люди вне покрытия вышек; оценка",
-   "segments_thousand": {
-    "villages_without_coverage": "100-250",
-    "mining_remote": "60-120",
-    "long_haul_drivers": "95-160",
-    "pastures_fieldwork": "105-210",
-    "total": "360-740"
+   "wave1": {
+    "satellites": 48,
+    "altitude_km": 1200,
+    "inclination_deg": 53,
+    "planes": 8,
+    "spare": 6
    },
-   "take_rate": "30-60%",
-   "price_usd_month": "5-10",
-   "revenue_usd_mln_year": "7-53",
-   "kz_total_with_gov_usd_bn": "0.04-0.13",
-   "share_of_need": "6-27%",
-   "club_core_retail_usd_mln": "30-200",
-   "club_total_all_sources_usd_bn": "0.26-0.83",
-   "operator_option_lever": "каждые $0,1 с SIM в месяц: $31 млн/год РК, $0,24 млрд/год ядро клуба — переговоры, не прогноз"
-  }
+   "wave2": {
+    "satellites": "84-96",
+    "shells": "48@53° + 24-36@30° + 12@0°",
+    "paid_by": "тропические члены"
+   },
+   "satellite": {
+    "mass_kg": 500,
+    "power_kw": 1.5,
+    "throughput_gbps": 60,
+    "beams": "digital, steerable",
+    "vendor": "Airbus / Thales / MDA, payload bought"
+   }
+  },
+  "coverage_capital_pct": {
+   "wave1_48": {
+    "Астана": 96,
+    "Эр-Рияд": 66,
+    "Бразилиа": 65,
+    "Джакарта": 63,
+    "Мехико": 69,
+    "Анкара": 100
+   },
+   "wave2_84": {
+    "Астана": 96,
+    "Эр-Рияд": 96,
+    "Бразилиа": 90,
+    "Джакарта": 99,
+    "Мехико": 96,
+    "Анкара": 100
+   }
+  },
+  "capacity_over_country_gbps_dl_ul": {
+   "Казахстан": "134/34",
+   "Бразилия": "110/28",
+   "Турция": "96/24",
+   "Индонезия": "92/22",
+   "Мексика": "92/22",
+   "Саудовская Аравия": "72/18",
+   "Узбекистан": "86/22"
+  },
+  "cost_per_gb_usd": {
+   "util_100": "0.09-0.14",
+   "util_25": "0.35-0.55",
+   "util_10": "0.9-1.4",
+   "benchmarks": {
+    "tele2_wholesale": "0.10-0.20",
+    "starlink_novaspace": "<0.30",
+    "geo_hts": "1-3"
+   }
+  },
+  "capex_usd_bn": "1.8-2.8",
+  "anchor": "Казахстан $1 млрд из Нацфонда = 40-45%",
+  "members": {
+   "big": [
+    "SAU",
+    "BRA",
+    "IDN",
+    "MEX"
+   ],
+   "platform_supplier": "TUR",
+   "mid": [
+    "UZB",
+    "AZE",
+    "VNM",
+    "THA",
+    "MYS",
+    "EGY",
+    "ZAF",
+    "ARG",
+    "MNG",
+    "QAT"
+   ],
+   "excluded": [
+    "AUS",
+    "JPN",
+    "KOR",
+    "PHL",
+    "ARE",
+    "PAK",
+    "NGA"
+   ]
+  },
+  "governance": "доля капитала = доля использования = голос; якорь ≥35%; спутник — прозрачный ретранслятор; контроллер нагрузки с открытым кодом и мультиподписью; командная линия — один оператор + договор",
+  "timeline": {
+   "2027": "решение, МСЭ, контракт на платформу",
+   "2029": "первые 6 на орбите, сервис 2-3 ч/сутки",
+   "2030-31": "серия 48",
+   "2031-32": "волна 2"
+  },
+  "status": "предложение, не договорённости"
  }
 }

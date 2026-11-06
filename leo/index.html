@@ -201,7 +201,7 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
       <div class="note" id="modelNote">Связь на телефон (класс AST): 520 км, наклон 53°, угол над горизонтом 15°.</div>
     </div>
     <div class="group" id="grpClub" hidden>
-      <div class="note"><b>Своя группировка клуба.</b> На телефон: 72–96 спутников, 520 км. На терминал (антенна как Starlink Mini): 48–60 спутников, 1 200 км — закрывают пояс от Турции до Монголии без перерывов. <span style="color:#f5a145">Оранжевым</span> — ядро клуба (тюркские страны, Центральная Азия, Монголия), <span style="color:#b48cff">фиолетовым</span> — кандидаты второй волны. Подробно — в разделе <a href="#club">«Своя группировка и клуб стран»</a>.</div>
+      <div class="note"><b>Группировка клуба на терминалы.</b> Волна 1: 48 спутников на 1 200 км, наклон 53° — пояс 40–55° без перерывов. Волна 2: 84–96, добавляются оболочки на 30° и на экваторе для тропических членов. Спутник — зеркало для шлюза: он красится в цвет страны, чей шлюз видит сейчас. <span style="color:#00afca">Голубой</span> — Казахстан, якорь; <span style="color:#f5a145">оранжевый</span> — большие держатели; <span style="color:#b48cff">фиолетовый</span> — средние члены. Подробно — в разделе <a href="#club">«Своя группировка и клуб стран»</a>.</div>
     </div>
     <div class="group">
       <div class="lbl">Слои</div>
@@ -396,52 +396,36 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
 
   <section class="card wide" id="club">
     <h2>Своя группировка и клуб стран</h2>
-    <p>Так могла бы выглядеть своя группировка: 72–96 спутников на высоте 520 км с наклоном 53°, 12 плоскостей орбит, как у AST. Включите на глобусе режим <b>«Своя группировка»</b>: <button type="button" class="btn" id="btnClub">Показать на глобусе</button></p>
-    <p>Почему нужен клуб, глобус считает сам. Спутник облетает Землю за 95 минут и видит Казахстан <b>5,5% времени</b>, ядро клуба — <b>9,6%</b>, ядро вместе со второй волной — <b>25,4%</b>. Остальное время он летит над океаном и чужими странами. Чем шире клуб по долготе, тем больше времени каждый спутник зарабатывает.</p>
-    <p>SIM в таблицах ниже — размер рынка страны, а не платящие. Городскую мобильную связь спутник не заменяет, платить будут только те, кто живёт и работает вне вышек. В Казахстане это 0,36–0,74 млн человек (сёла без связи, горнодобыча, дальнобой, пастбища), они дадут $7–53 млн в год при нужных $0,5–0,65 млрд. Поэтому группировку окупают госконтракты стран клуба и дополнительные приборы на спутниках, а не розница. Вторая волна нужна, чтобы спутники работали над другими долготами и под госконтракты других стран. Расчёт — в <a href="/deck/#s15">презентации, слайды 14–17</a>.</p>
-    <h3>Два варианта группировки</h3>
+    <p>Группировка на терминалы: <b>48 спутников</b> на 1 200 км с наклоном 53° закрывают пояс 40–55° без перерывов (волна 1); <b>84–96</b> с добавкой оболочек на 30° и на экваторе закрывают тропических членов (волна 2). Аппарат 500 кг, 1,5 кВт, 60 Гбит/с с цифровыми лучами, платформа и нагрузка покупные. Включите на глобусе режим <b>«Своя группировка»</b>: <button type="button" class="btn" id="btnClub">Показать на глобусе</button></p>
+    <p><b>Спутник — зеркало для наземного шлюза.</b> Трафик на борту не обрабатывается: шифрование, лицензия, СОРМ у каждой страны свои, общие только орбита и командная линия. На глобусе спутник красится в цвет страны, чей шлюз видит сейчас, и линия идёт к её столице: одно и то же зеркало по очереди работает на Бразилию, Саудовскую Аравию и нас. Дальний член не требует ни одного лишнего спутника, он загружает аппарат, когда у нас ночь; лишние спутники требует другая широта — тропики.</p>
+    <p>Критерии члена клуба: вне двух лагерей, своей группировки нет, есть $300–400 млн на долю, страна дальше 3 500 км от нас (пятно спутника — круг радиусом 1 700 км, дальние члены никогда не делят один аппарат). Формула Intelsat и Arabsat: доля капитала = доля использования = голос, якорный акционер от 35% — у нас это $1 млрд из Нацфонда на 40–45%. Без якоря получается RASCOM: африканский клуб 1992 года, где доли распылили, 63% оплатила Ливия, и проект умер после 2011. Деньги — контрактами за готовность: Канада и Telesat (C$2,3 млрд, 04.08.2026), Пентагон и Iridium ($738,5 млн за 7 лет).</p>
+    <h3>Две волны группировки на терминалы</h3>
     <div class="tbl"><table>
-      <thead><tr><th></th><th>На терминал (антенна как Starlink Mini)</th><th>На телефон (класс AST)</th></tr></thead>
+      <thead><tr><th></th><th>Волна 1: пояс 40–55°</th><th>Волна 2: + тропики</th></tr></thead>
       <tbody>
-        <tr><td>Орбита</td><td class="n">1 200 км, 53°</td><td class="n">520 км, 53°</td></tr>
-        <tr><td>Спутников для связи без перерывов над поясом Турция–Монголия</td><td class="n"><b>48–60</b></td><td class="n"><b>72–96</b></td></tr>
-        <tr><td>Спутник</td><td>150–300 кг, покупная платформа класса OneWeb</td><td>6 т, антенна 223 м², своя разработка</td></tr>
-        <tr><td>Скорость на абонента</td><td class="n">50–150 Мбит/с</td><td class="n">до 20 Мбит/с, обещают больше</td></tr>
-        <tr><td>До рабочей группировки</td><td class="n">4–6 лет, $1,5–2,5 млрд (оценка с рисками)</td><td class="n">6–8 лет, $3–4 млрд</td></tr>
-        <tr><td>Против кого</td><td>Thuraya (в 100 раз быстрее), Iridium; аргумент — суверенитет</td><td>Starlink в телефоне, AST</td></tr>
+        <tr><td>Орбита</td><td class="n">48 на 1 200 км, 53°</td><td class="n">+ 24–36 на 30° и 12 на экваторе = 84–96</td></tr>
+        <tr><td>Связь без перерывов</td><td>Астана, Стамбул, Ташкент 96–100%; Эр-Рияд, Бразилиа, Джакарта 63–69%</td><td>Все столицы клуба 90–100%</td></tr>
+        <tr><td>Ёмкость над Казахстаном</td><td class="n">2,8 спутника, 134 / 34 Гбит/с вниз / вверх</td><td class="n">без изменений</td></tr>
+        <tr><td>Цена с рисками</td><td class="n">$1,8–2,8 млрд, 4–6 лет</td><td class="n">за счёт тропических членов</td></tr>
+        <tr><td>Сроки</td><td class="n">первые 6 на орбите в 2029, серия 48 в 2030–31</td><td class="n">2031–32</td></tr>
+        <tr><td>Кто платит</td><td>Казахстан $1 млрд + 3 дальних члена по take-or-pay</td><td>Бразилия, Индонезия, Саудовская Аравия</td></tr>
       </tbody>
     </table></div>
-    <p class="note">Первый шаг — терминалы: это решённая инженерная задача, платформы покупаются, запуск на Falcon 9 или LVM3. Оценка стоимости — по аналогам OneWeb ($3,4 млрд до банкротства при 74 спутниках), Iridium NEXT ($3 млрд, 81 спутник), Telesat Lightspeed (~$10 млн за спутник в серии). Содержание 54 спутников — $0,15–0,25 млрд в год. Подробно — в <a href="/deck/#s22">презентации, слайды 22–26</a>.</p>
-    <h3>Ядро: тюркские страны, Центральная Азия, Монголия</h3>
+    <h3>Кто подходит в клуб (проверено по новостям на 06.11.2026)</h3>
     <div class="tbl"><table>
-      <thead><tr><th>Страна</th><th>SIM, млн</th><th>Почему</th></tr></thead>
+      <thead><tr><th>Страна</th><th>От Астаны</th><th>Свежий факт</th><th>Роль</th></tr></thead>
       <tbody>
-        <tr><td>Казахстан</td><td class="n">26,2</td><td>Инициатор: шлюз, ядро сети, центр управления</td></tr>
-        <tr><td>Узбекистан</td><td class="n">40,2</td><td>Крупнейший рынок Центральной Азии; Uztelecom уже дистрибьютор Amazon Leo</td></tr>
-        <tr><td>Турция</td><td class="n">94,3</td><td>Крупнейший рынок Организации тюркских государств, свой спутниковый оператор Türksat</td></tr>
-        <tr><td>Азербайджан</td><td class="n">11,3</td><td>Свой спутниковый оператор Azercosmos</td></tr>
-        <tr><td>Кыргызстан</td><td class="n">7,7</td><td>Горы, мало вышек</td></tr>
-        <tr><td>Таджикистан</td><td class="n">7,9</td><td>Горы; Казахстан объявил, что даст Таджикистану спутниковый интернет через шлюзы Starlink в РК</td></tr>
-        <tr><td>Туркменистан</td><td class="n">6,3</td><td>Наблюдатель в Организации тюркских государств</td></tr>
-        <tr><td>Монголия</td><td class="n">4,9</td><td>Огромная территория без вышек</td></tr>
-        <tr><td><b>Итого ядро</b></td><td class="n"><b>≈199</b></td><td>Размер рынков ядра, не платящие</td></tr>
+        <tr><td>Казахстан</td><td class="n">—</td><td>$1 млрд из Нацфонда, ЦУП, сборка у Ghalam</td><td>Якорь, 40–45%</td></tr>
+        <tr><td>Саудовская Аравия</td><td class="n">3 500 км</td><td>Госфонд NSG 09.09.2026: «своя LEO неэффективна, ищем партнёрство, решение до конца 2026»; оборона $80 млрд/год</td><td>Большой держатель</td></tr>
+        <tr><td>Бразилия</td><td class="n">12 500 км</td><td>Telebras: «со Starlink не партнёрим из-за суверенитета»; SpaceSail одобрен 02.2026; свой SGDC-2 снова сдвинут</td><td>Большой держатель</td></tr>
+        <tr><td>Индонезия</td><td class="n">6 600 км</td><td>Telkomsat + Len: оборонная система к 2027, фаза 2 — своя LEO; 13 400 LEO-слотов в МСЭ</td><td>Большой держатель</td></tr>
+        <tr><td>Мексика</td><td class="n">11 500 км</td><td>Программа 2026–30 без денег и орбиты; контракт Starlink–CFE истекает 31.12.2026</td><td>Большой держатель</td></tr>
+        <tr><td>Турция</td><td class="n">3 300 км</td><td>ASELSAN: 198 спутников, тест 2028; ОТГ 10.2026 — рамочное соглашение по космосу с Казахстаном, Азербайджаном, Узбекистаном</td><td>Поставщик платформ</td></tr>
+        <tr><td>Узбекистан, Азербайджан, Вьетнам, Таиланд, Малайзия, Египет, ЮАР, Аргентина, Монголия, Катар</td><td class="n">—</td><td>Шлюзы, госконтракты, без якорной доли; Катар — Es'hailSat с Telesat по LEO с 02.2026</td><td>Средние члены</td></tr>
+        <tr><td>Австралия, Япония, Корея, Филиппины, ОАЭ, Пакистан, Нигерия</td><td class="n">—</td><td>Союзники США с готовым выбором; ОАЭ — Equatys с Viasat; китайское железо</td><td>Не подходят</td></tr>
       </tbody>
     </table></div>
-    <h3>Вторая волна: разнести клуб по долготе</h3>
-    <div class="tbl"><table>
-      <thead><tr><th>Страна</th><th>SIM, млн</th><th>Почему</th></tr></thead>
-      <tbody>
-        <tr><td>Индонезия</td><td class="n">347,3</td><td>17 тыс. островов, связь со спутника нужна всерьёз</td></tr>
-        <tr><td>Пакистан</td><td class="n">193,1</td><td>Большой рынок, близкие отношения с Турцией и Азербайджаном</td></tr>
-        <tr><td>Бразилия</td><td class="n">216,1</td><td>Другое полушарие: спутник работает там, когда над нами ночь. По сообщениям, ведёт переговоры с Qianfan</td></tr>
-        <tr><td>Мексика</td><td class="n">152,4</td><td>Другое полушарие</td></tr>
-        <tr><td>Нигерия</td><td class="n">164,6</td><td>Крупнейший рынок Африки</td></tr>
-        <tr><td>Египет</td><td class="n">113,2</td><td>Ближний Восток и Африка</td></tr>
-        <tr><td>Кения</td><td class="n">71,4</td><td>Восточная Африка</td></tr>
-        <tr><td>Малайзия</td><td class="n">49,7</td><td>Юго-Восточная Азия. По сообщениям, ведёт переговоры с Qianfan</td></tr>
-      </tbody>
-    </table></div>
-    <p class="note">SIM — данные Всемирного банка за 2024 год (Таджикистан — 2023, Туркменистан — 2021). Список — гипотеза для обсуждения, а не договорённости. Страны со своими программами — ОАЭ (Space42, Equatys), Саудовская Аравия — скорее конкуренты или партнёры по платформе. Чем крупнее участники, тем меньше доля Казахстана в управлении: это надо решить в уставе клуба заранее.</p>
+    <p class="note">Подписанных межгосударственных LEO-клубов вне ЕС и НАТО пока нет ни одного. Ёмкость по странам и себестоимость гигабайта ($0,35–0,55 при загрузке 25%, в 1,5–2 раза дороже Starlink) — в <a href="/deck/#s30">презентации, слайды 30–31</a>; экономика первого шага — <a href="/deck/#s22">слайды 22–26</a>. Источники: SIPRI 2024, МВФ 10.2026, Anatel, NSG, ASELSAN на IAC-2026, Telesat/DND, USSF/Iridium.</p>
   </section>
 
   <section class="card">
@@ -516,7 +500,7 @@ table.cmp .sw{display:inline-flex;vertical-align:-1px;margin-right:4px}
 'use strict';
 const R=6371, MU=398600.4418, WE=7.2921159e-5, D2R=Math.PI/180;
 let H_MODEL=520, A_MODEL=R+H_MODEL, N_MODEL=Math.sqrt(MU/(A_MODEL**3)), INC=53*D2R;
-const VARIANTS={phone:{h:520,inc:53,elev:15,presets:{13:[13,1,0],45:[9,5,1],60:[10,6,1],72:[12,6,1],96:[12,8,1]},ns:[13,45,60,72,96],note:'Связь на телефон (класс AST): 520 км, наклон 53°, угол над горизонтом 15°.'},term:{h:1200,inc:53,elev:25,presets:{36:[6,6,0],48:[8,6,1],54:[9,6,1],60:[10,6,3],72:[12,6,1]},ns:[36,48,54,60,72],note:'Связь на терминал (класс OneWeb, антенна как Starlink Mini): 1 200 км, наклон 53°, угол над горизонтом 25°.'}};
+const VARIANTS={phone:{h:520,inc:53,elev:15,presets:{13:[13,1,0],45:[9,5,1],60:[10,6,1],72:[12,6,1],96:[12,8,1]},ns:[13,45,60,72,96],note:'Связь на телефон (класс AST): 520 км, наклон 53°, угол над горизонтом 15°.'},term:{h:1200,inc:53,elev:25,presets:{48:[8,6,1],54:[9,6,1],60:[[8,6,1,53],[1,12,0,0]],84:[[8,6,1,53],[4,6,1,30],[1,12,0,0]],96:[[8,6,1,53],[6,6,1,30],[1,12,0,0]]},ns:[48,54,60,84,96],note:'Связь на терминал (антенна как Starlink Mini): 1 200 км, угол над горизонтом 25°. 48 — волна 1, наклон 53°, пояс 40–55°; 84–96 — волна 2: + 24–36 на 30° и 12 на экваторе для тропических членов.'}};
 function setVariant(k){const v=VARIANTS[k];state.variant=k;H_MODEL=v.h;A_MODEL=R+H_MODEL;N_MODEL=Math.sqrt(MU/(A_MODEL**3));INC=v.inc*D2R;state.elev=v.elev;PRESETS=v.presets;const seg=$('segN');seg.innerHTML=v.ns.map(n=>'<button type="button" data-n="'+n+'">'+n+'</button>').join('');$('modelNote').textContent=v.note;const en=$('elevNote');if(en)en.textContent='Связь считаем, если спутник выше '+v.elev+'° над горизонтом'+(k==='phone'?' — почему, сказано в «Оговорках» ниже.':' — у плоской антенны терминала ниже луч не держится.');if(!(state.n in PRESETS))state.n=v.ns[Math.min(2,v.ns.length-1)];}
 let PRESETS=VARIANTS.phone.presets;
 const PLACES=[{n:'Балхаш',over:'Балхашем',lat:46.85,lon:74.98,d:'город у озера, 380 км от Алматы'},{n:'Бейнеу',over:'Бейнеу',lat:45.32,lon:55.19,d:'запад, пустыня, 1 800 км от Алматы'},{n:'Улытау',over:'Улытау',lat:48.65,lon:67.0,d:'центр, степь'},{n:'Зайсан',over:'Зайсаном',lat:47.47,lon:84.87,d:'восток, горы'}];
@@ -558,7 +542,9 @@ function anyCover(u,cl,pts){for(const g of pts)if(u[0]*g[0]+u[1]*g[1]+u[2]*g[2]>
 let phoneU=ecefUnit(PHONE.lat,PHONE.lon);const gwU=ecefUnit(GW.lat,GW.lon);
 function coverMark(u,cl,mark){let on=false;for(let k=0;k<kzPts.length;k++){const g=kzPts[k];if(u[0]*g[0]+u[1]*g[1]+u[2]*g[2]>cl){on=true;if(mark)mark[k]=1;else return true;}}return on;}
 
-const CLUB_CORE=['398','860','792','031','417','762','795','496'],CLUB_W2=['360','458','586','818','566','404','076','484'];
+const CLUB_CORE=['682','076','360','484','792'],CLUB_W2=['860','031','704','764','458','818','710','032','496','634'];
+const CLUB_GW=[{id:'398',n:'Казахстан',lat:51.2,lon:71.4,c:0x00afca,css:'#00afca'},{id:'682',n:'Саудовская Аравия',lat:24.7,lon:46.7,c:0xf5a145,css:'#f5a145'},{id:'076',n:'Бразилия',lat:-15.8,lon:-47.9,c:0xf5a145,css:'#f5a145'},{id:'360',n:'Индонезия',lat:-6.2,lon:106.8,c:0xf5a145,css:'#f5a145'},{id:'484',n:'Мексика',lat:19.4,lon:-99.1,c:0xf5a145,css:'#f5a145'},{id:'792',n:'Турция',lat:39.9,lon:32.9,c:0xf5a145,css:'#f5a145'},{id:'860',n:'Узбекистан',lat:41.3,lon:69.3,c:0xb48cff,css:'#b48cff'},{id:'031',n:'Азербайджан',lat:40.4,lon:49.9,c:0xb48cff,css:'#b48cff'},{id:'704',n:'Вьетнам',lat:21.0,lon:105.8,c:0xb48cff,css:'#b48cff'},{id:'764',n:'Таиланд',lat:13.8,lon:100.5,c:0xb48cff,css:'#b48cff'},{id:'458',n:'Малайзия',lat:3.1,lon:101.7,c:0xb48cff,css:'#b48cff'},{id:'818',n:'Египет',lat:30.0,lon:31.2,c:0xb48cff,css:'#b48cff'},{id:'710',n:'ЮАР',lat:-25.7,lon:28.2,c:0xb48cff,css:'#b48cff'},{id:'032',n:'Аргентина',lat:-34.6,lon:-58.4,c:0xb48cff,css:'#b48cff'},{id:'496',n:'Монголия',lat:47.9,lon:106.9,c:0xb48cff,css:'#b48cff'},{id:'634',n:'Катар',lat:25.3,lon:51.5,c:0xb48cff,css:'#b48cff'}];
+const CLUB_GWU=CLUB_GW.map(g=>({...g,u:ecefUnit(g.lat,g.lon),mat:new THREE.MeshBasicMaterial({color:g.c}),fp:new THREE.MeshBasicMaterial({color:g.c,transparent:true,opacity:0.16,depthWrite:false,side:THREE.DoubleSide}),ed:new THREE.LineBasicMaterial({color:g.c,transparent:true,opacity:0.9})}));
 function makeTexture(club){
   const W=2048,Hh=1024,cv=document.createElement('canvas');cv.width=W;cv.height=Hh;const g=cv.getContext('2d');
   g.fillStyle='#0b1830';g.fillRect(0,0,W,Hh);
@@ -701,15 +687,18 @@ const kazObjs=real.kazsat.recs.map((rec,i)=>{const m=new THREE.Mesh(new THREE.Bo
 const modelRoot=new THREE.Group();scene.add(modelRoot);
 const mOrbits=new THREE.Group(),mSats=new THREE.Group(),mFp=new THREE.Group();modelRoot.add(mOrbits,mSats,mFp);
 let mList=[],mCap=null,mEdge=null;
+const clubLinks=new THREE.Group();scene.add(clubLinks);const clubLinkPool=[];for(let i=0;i<16;i++){const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:0.85}));ln.visible=false;clubLinks.add(ln);clubLinkPool.push(ln);}
+const gwDot=new THREE.SphereGeometry(0.012,10,10);for(const w of CLUB_GWU){const m=new THREE.Mesh(gwDot,w.mat);m.position.copy(toScene(w.u,1.004));clubLinks.add(m);}
 const matMOn=new THREE.MeshBasicMaterial({color:0xf5a145}),matMOff=new THREE.MeshBasicMaterial({color:0xc9d4e6});
-function modelECEF(sp,t){const u=sp.m0+N_MODEL*t,cO=Math.cos(sp.raan),sO=Math.sin(sp.raan),cu=Math.cos(u),su=Math.sin(u),ci=Math.cos(INC),si=Math.sin(INC);
+function modelECEF(sp,t){const u=sp.m0+N_MODEL*t,cO=Math.cos(sp.raan),sO=Math.sin(sp.raan),cu=Math.cos(u),su=Math.sin(u),inc=sp.inc===undefined?INC:sp.inc,ci=Math.cos(inc),si=Math.sin(inc);
   const x=cO*cu-sO*su*ci,y=sO*cu+cO*su*ci,z=su*si,th=WE*t,ct=Math.cos(th),st=Math.sin(th);return [x*ct+y*st,-x*st+y*ct,z];}
-function modelParams(N){const [P,S,F]=PRESETS[N];const l=[];for(let p=0;p<P;p++)for(let s=0;s<S;s++)l.push({raan:2*Math.PI*p/P,m0:2*Math.PI*s/S+2*Math.PI*F*p/(P*S)});return {P,l};}
+function modelShells(N){const pr=PRESETS[N];return Array.isArray(pr[0])?pr.map(([P,S,F,inc])=>({P,S,F,inc:inc*D2R})):[{P:pr[0],S:pr[1],F:pr[2],inc:INC}];}
+function modelParams(N){const l=[],sh=modelShells(N);for(const {P,S,F,inc} of sh)for(let p=0;p<P;p++)for(let s=0;s<S;s++)l.push({raan:2*Math.PI*p/P,m0:2*Math.PI*s/S+2*Math.PI*F*p/(P*S),inc});return {P:sh[0].P,l,shells:sh};}
 function clear(g){while(g.children.length){const c=g.children.pop();if(c.geometry&&!c.userData.shared)c.geometry.dispose();}}
 function buildModel(){clear(mOrbits);clear(mSats);clear(mFp);if(mCap)mCap.dispose();if(mEdge)mEdge.dispose();
   const lam=lambdaAt(A_MODEL,state.elev);mCap=capGeo(lam);mEdge=edgeGeo(lam);
-  const {P,l}=modelParams(state.n),r=A_MODEL/R;
-  for(let p=0;p<P;p++){const O=2*Math.PI*p/P,pts=[];for(let i=0;i<=128;i++){const u=i/128*2*Math.PI;pts.push(toScene([Math.cos(O)*Math.cos(u)-Math.sin(O)*Math.sin(u)*Math.cos(INC),Math.sin(O)*Math.cos(u)+Math.cos(O)*Math.sin(u)*Math.cos(INC),Math.sin(u)*Math.sin(INC)],r));}
+  const {l,shells}=modelParams(state.n),r=A_MODEL/R;
+  for(const {P,inc} of shells)for(let p=0;p<P;p++){const O=2*Math.PI*p/P,pts=[];for(let i=0;i<=128;i++){const u=i/128*2*Math.PI;pts.push(toScene([Math.cos(O)*Math.cos(u)-Math.sin(O)*Math.sin(u)*Math.cos(inc),Math.sin(O)*Math.cos(u)+Math.cos(O)*Math.sin(u)*Math.cos(inc),Math.sin(u)*Math.sin(inc)],r));}
     mOrbits.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x5b84ff,transparent:true,opacity:0.35})));}
   const bg=new THREE.BoxGeometry(0.022,0.004,0.022);
   mList=l.map(sp=>{const m=new THREE.Mesh(bg,matMOff);m.userData.shared=true;mSats.add(m);const cap=new THREE.Mesh(mCap,matFpOff);cap.userData.shared=true;const edge=new THREE.Line(mEdge,matEdgeOff);edge.userData.shared=true;mFp.add(cap,edge);return {sp,m,cap,edge};});
@@ -727,15 +716,16 @@ function renderStatsRows(){const tb=$('cmpBody');if(!tb)return;tb.innerHTML='';c
     const fut=(k==='ast'&&planList.length)||((synth[k]||[]).length);$('c_'+k).textContent=totalCount(k).toLocaleString('ru-RU')+(fut?'*':'');}
   const anyFut=planList.length||synth.kuiper.length||synth.qianfan.length;const cn=$('cmpNote');if(cn)cn.textContent=anyFut?'* по плану компании на '+state.stage+' год, будущие спутники расставлены условно. Amazon Leo, OneWeb и Qianfan — интернет для тарелок, не для телефонов.':'Связь за сутки — доля времени, когда над средней точкой Казахстана есть спутник группировки. Amazon Leo, OneWeb и Qianfan — интернет для тарелок, не для телефонов.';
   dailyReal();}
-function modelStatsLayout(){if(state.mode==='club'){setStats([['sNow','Видят Казахстан сейчас',true],['sDay','Связь в Казахстане за сутки',true],['sOne','Один спутник видит Казахстан'],['sCore','…видит ядро клуба',true],['sAll','…ядро и вторую волну',true],['sRad','Радиус зоны одного спутника']]);return;}setStats([['sNow','Видят Казахстан сейчас',true],['sCov','Территория под зонами сейчас'],['sDay','Связь есть, за сутки (средняя точка)',true],['sWorst','То же, худшая точка страны'],['sOne','Один спутник видит страну'],['sRad','Радиус зоны одного спутника']]);}
+function modelStatsLayout(){if(state.mode==='club'){const box=$('stats');box.innerHTML='<table class="cmp"><thead><tr><th>Шлюз</th><th>сейчас</th><th>сутки</th></tr></thead><tbody>'+CLUB_GWU.slice(0,6).map(w=>'<tr><td><span style="color:'+w.css+'">●</span> '+w.n+'</td><td class="n" id="cn_'+w.id+'">–</td><td class="n hot" id="cd_'+w.id+'">–</td></tr>').join('')+'</tbody></table><div class="note">Спутник красится в цвет страны, чей шлюз видит сейчас: одно зеркало по очереди работает на всех. «Сутки» — доля времени со связью над столицей.</div><div class="stat"><span>Один спутник видит Казахстан</span><b id="sOne">–</b></div><div class="stat"><span>…хоть одну страну клуба</span><b id="sAll" class="hot">–</b></div><div class="stat"><span>Радиус зоны одного спутника</span><b id="sRad">–</b></div>';return;}setStats([['sNow','Видят Казахстан сейчас',true],['sCov','Территория под зонами сейчас'],['sDay','Связь есть, за сутки (средняя точка)',true],['sWorst','То же, худшая точка страны'],['sOne','Один спутник видит страну'],['sRad','Радиус зоны одного спутника']]);}
 function dailyModel(){const cl=Math.cos(lambdaAt(A_MODEL,state.elev));const {l}=modelParams(state.n);const hits=new Float64Array(kzPts.length);let steps=0;
   for(let t=0;t<86400;t+=60){steps++;const sp=l.map(s=>modelECEF(s,t));for(let k=0;k<kzPts.length;k++){const g=kzPts[k];for(const s of sp){if(s[0]*g[0]+s[1]*g[1]+s[2]*g[2]>cl){hits[k]++;break;}}}}
   let sum=0,mn=1;for(const h of hits){const f=h/steps;sum+=f;if(f<mn)mn=f;}
   put('sDay',(sum/hits.length*100).toFixed(0)+' %');put('sWorst',(mn*100).toFixed(0)+' %');
   let over=0,tot=0;for(let t=0;t<3*86400;t+=60){tot++;if(coverMark(modelECEF({raan:0,m0:0},t),cl))over++;}
   put('sOne',(over/tot*100).toFixed(1).replace('.',',')+' % времени');
-  if(state.mode==='club'){if(!clubCorePts){clubCorePts=featPts(CLUB_CORE,2);clubAllPts=clubCorePts.concat(featPts(CLUB_W2,2.5));}let oc=0,oa=0;for(let t=0;t<3*86400;t+=60){const u=modelECEF({raan:0,m0:0},t);if(anyCover(u,cl,clubCorePts))oc++;if(anyCover(u,cl,clubAllPts))oa++;}
-    put('sCore',(oc/tot*100).toFixed(1).replace('.',',')+' % времени');put('sAll',(oa/tot*100).toFixed(1).replace('.',',')+' % времени');}put('sRad','≈'+Math.round(lambdaAt(A_MODEL,state.elev)*R).toLocaleString('ru-RU')+' км');}
+  if(state.mode==='club'){if(!clubAllPts){clubAllPts=featPts(['398'].concat(CLUB_CORE,CLUB_W2),2.5);}let oa=0;for(let t=0;t<3*86400;t+=60){const u=modelECEF({raan:0,m0:0,inc:INC},t);if(anyCover(u,cl,clubAllPts))oa++;}
+    put('sAll',(oa/tot*100).toFixed(1).replace('.',',')+' % времени');
+    for(const w of CLUB_GWU.slice(0,6)){let h=0,st=0;for(let t=0;t<86400;t+=60){st++;for(const sp of l){const q=modelECEF(sp,t);if(q[0]*w.u[0]+q[1]*w.u[1]+q[2]*w.u[2]>cl){h++;break;}}}put('cd_'+w.id,Math.round(h/st*100)+' %');}}put('sRad','≈'+Math.round(lambdaAt(A_MODEL,state.elev)*R).toLocaleString('ru-RU')+' км');}
 let dayJob=0;
 function dailyReal(){const job=++dayJob;const start=simDate().getTime();
   function run(recs,stepMin,out,extra,exAlt,exFn){if(!$(out))return;const hits=new Float64Array(kzPts.length);let steps=0,i=0;const total=Math.round(1440/stepMin);put(out,'считаю…');if(!recs.length&&!(extra&&extra.length)){put(out,'0 %');return;}
@@ -814,11 +804,13 @@ function updateReal(nowMs){
 }
 function updateModel(){
   const cl=Math.cos(lambdaAt(A_MODEL,state.elev)),r=A_MODEL/R;mOrbits.rotation.y=-WE*state.tModel;mOrbits.visible=state.orb;mFp.visible=state.fp;
-  let n=0,best=null,bd=-1;const mark=new Uint8Array(kzPts.length);
+  let n=0,best=null,bd=-1;const mark=new Uint8Array(kzPts.length);if(state.mode==='club')for(const w of CLUB_GWU){w.now=0;w.best=null;w.bestD=-1;}
   for(const s of mList){const p=modelECEF(s.sp,state.tModel);s.m.position.copy(toScene(p,r));s.m.lookAt(0,0,0);const dir=toScene(p,1).normalize();s.cap.quaternion.setFromUnitVectors(yUp,dir);s.edge.quaternion.copy(s.cap.quaternion);
     const on=coverMark(p,cl,mark);if(on)n++;s.m.material=on?matMOn:matMOff;s.cap.material=on?matFpOn:matFpOff;s.edge.material=on?matEdgeOn:matEdgeOff;
+    if(state.mode==='club'){let g=null,bg=cl;for(const w of CLUB_GWU){const d=p[0]*w.u[0]+p[1]*w.u[1]+p[2]*w.u[2];if(d>bg){bg=d;g=w;}}if(g){s.m.material=g.mat;s.cap.material=g.fp;s.edge.material=g.ed;g.now++;if(!g.best||bg>g.bestD){g.best=p;g.bestD=bg;}}}
     const dp=p[0]*phoneU[0]+p[1]*phoneU[1]+p[2]*phoneU[2],dg=p[0]*gwU[0]+p[1]*gwU[1]+p[2]*gwU[2];if(dp>cl&&dg>cl&&dp>bd){bd=dp;best=p;}}
   let c=0;for(const v of mark)c+=v;put('sNow',n+' из '+mList.length);put('sCov',Math.round(c/kzPts.length*100)+' %');
+  if(state.mode==='club'){clubLinks.visible=state.link;let k=0;for(const w of CLUB_GWU){put('cn_'+w.id,w.now);if(w.best&&k<clubLinkPool.length){const ln=clubLinkPool[k++];ln.visible=state.link;ln.geometry.setFromPoints([toScene(w.u,1.002),toScene(w.best,r)]);ln.material.color.setHex(w.c);}}for(;k<clubLinkPool.length;k++)clubLinkPool[k].visible=false;}else clubLinks.visible=false;
   const show=state.link&&!!best;upLine.visible=fdLine.visible=show;if(show)setLink(best,r);
   const hh=Math.floor(state.tModel/3600)%24,mm=Math.floor(state.tModel/60)%60;
   $('hud').textContent='модельное время '+String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0')+(state.link?(show?' · '+PHONE.n+' на связи':' · над '+PHONE.over+' нет спутника со шлюзом'):'');
@@ -867,7 +859,7 @@ function renderLegend(){const box=$('legend3d');box.innerHTML='';
     const nm={oneweb:'треугольники · 1 200 км, 88°',kuiper:'Amazon Leo — ромбы · слои 630 км/52°, 610/42°, 590/33°',qianfan:'Qianfan (Китай) — крестики · 1 066 км, 89°'};for(const k of ['oneweb','kuiper','qianfan'])if(GROUPS[k].on)row(GROUPS[k].css,SHAPE[k],nm[k]+', '+totalCount(k).toLocaleString('ru-RU'),k);
     if(planList.length){const f=document.createElement('div');f.className='note2';f.textContent='Год '+state.stage+': считаем, что планы сбылись — AST, Amazon Leo (3 236 к 2029), Qianfan (график до ~13 600 к 2030). Starlink для телефонов и OneWeb — сегодняшний состав: новых чисел нет. Будущие спутники расставлены условно.';box.appendChild(f);}
     const n=document.createElement('div');n.className='note2';n.textContent='Ярче — видят Казахстан. Нажмите на спутник, чтобы узнать имя.';box.appendChild(n);
-  }else{row('#f5a145','sq','видит Казахстан');row('#c9d4e6','sq','над другими странами');row('#5b84ff','line','плоскости орбит');if(state.mode==='club'){row('#f5a145','dot','ядро клуба');row('#b48cff','dot','вторая волна');}}
+  }else{row('#f5a145','sq','видит Казахстан');row('#c9d4e6','sq','над другими странами');row('#5b84ff','line','плоскости орбит');if(state.mode==='club'){row('#00afca','dot','Казахстан — якорь');row('#f5a145','dot','большие держатели');row('#b48cff','dot','средние члены');row('#ffffff','line','спутник → шлюз страны');}}
   if(state.link)row('#9dff8a','line','канал на шлюз в Алматы');}
 // ---------- tap to identify ----------
 const ray=new THREE.Raycaster();ray.params.Points.threshold=0.03;const ndc=new THREE.Vector2();let pickTimer=0;
@@ -905,7 +897,7 @@ const paintM=segBind('segM','m',v=>setMode(v));
 $('btnClub').addEventListener('click',()=>{paintM('club');setMode('club');$('view').scrollIntoView({behavior:'smooth'});});
 let paintN=segBind('segN','n',v=>{state.n=+v;buildModel();dailyModel();});
 const paintV=segBind('segV','v',v=>{setVariant(v);paintN=segBind('segN','n',x=>{state.n=+x;buildModel();dailyModel();});paintN(state.n);buildModel();dailyModel();renderLegend();spdLabel();});
-function setMode(m){state.mode=m;$('grpReal').hidden=m!=='real';$('grpModel').hidden=m==='real';$('grpClub').hidden=m!=='club';if(m==='club'&&!clubTex)clubTex=makeTexture(true);globeMat.map=m==='club'?clubTex:baseTex;globeMat.needsUpdate=true;if(m==='club'&&state.n<72){state.n=72;paintN(72);}$('chipbar').style.visibility=m==='real'?'visible':'hidden';
+function setMode(m){state.mode=m;$('grpReal').hidden=m!=='real';$('grpModel').hidden=m==='real';$('grpClub').hidden=m!=='club';if(m==='club'&&!clubTex)clubTex=makeTexture(true);globeMat.map=m==='club'?clubTex:baseTex;globeMat.needsUpdate=true;if(m==='club'){if(state.variant!=='term'){const bt=document.querySelector('#segV button[data-v="term"]');if(bt)bt.click();}if(state.n!==48&&state.n!==84&&state.n!==96){const bn=document.querySelector('#segN button[data-n="48"]');if(bn)bn.click();}}else if(m==='model'&&state.mode!=='model'){buildModel();dailyModel();}$('chipbar').style.visibility=m==='real'?'visible':'hidden';
   if(m==='real'){realStatsLayout();dailyReal();lastPts=0;lastNext=0;}else{modelStatsLayout();buildModel();dailyModel();}spdLabel();renderLegend();if(tween!==undefined&&typeof autoZoom==='function')autoZoom();}
 const bind=(id,key)=>$(id).addEventListener('change',e=>{state[key]=e.target.checked;});
 bind('chkOrb','orb');bind('chkFp','fp');bind('chkLink','link');$('chkLink').addEventListener('change',renderLegend);
